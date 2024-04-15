@@ -1,0 +1,14 @@
+D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.AssemblyInfoInputs.cache
+D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.AssemblyInfo.cs
+D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.csproj.CoreCompileInputs.cache
+D:\Repo\WFCalculations\bin\Debug\net8.0\WFCalculations.exe
+D:\Repo\WFCalculations\bin\Debug\net8.0\WFCalculations.deps.json
+D:\Repo\WFCalculations\bin\Debug\net8.0\WFCalculations.runtimeconfig.json
+D:\Repo\WFCalculations\bin\Debug\net8.0\WFCalculations.dll
+D:\Repo\WFCalculations\bin\Debug\net8.0\WFCalculations.pdb
+D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.dll
+D:\Repo\WFCalculations\obj\Debug\net8.0\refint\WFCalculations.dll
+D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.pdb
+D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.genruntimeconfig.cache
+D:\Repo\WFCalculations\obj\Debug\net8.0\ref\WFCalculations.dll
