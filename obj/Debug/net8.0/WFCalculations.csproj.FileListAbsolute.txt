@@ -12,3 +12,4 @@ D:\Repo\WFCalculations\obj\Debug\net8.0\refint\WFCalculations.dll
 D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.pdb
 D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.genruntimeconfig.cache
 D:\Repo\WFCalculations\obj\Debug\net8.0\ref\WFCalculations.dll
+D:\Repo\WFCalculations\obj\Debug\net8.0\WFCalculations.sourcelink.json

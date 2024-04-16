@@ -1,0 +1,2 @@
+#Run program
+dotnet run Program.cs

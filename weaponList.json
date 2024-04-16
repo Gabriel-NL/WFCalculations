@@ -1,0 +1,22 @@
+{
+  "Weapon_1": {
+    "Name": "placeholder_name",
+    "Category": "placeholder_category",
+    "Series": "placeholder_series",
+    "Type": "placeholder_type",
+    "SubType": "placeholder_sub_type",
+    "IsComponentFor": ["sample1","sample2"],  
+    "MasteryRankRequirement": "placeholder_mastery_rank",
+    "RivenDisposition": "placeholder_riven_disposition",
+    "ReleaseDate": "placeholder_release_date",
+    "Impact": 7,
+    "Puncture": 7,
+    "Slash": 266,
+    "CritChance": 0,
+    "CritMultiplier": 0,
+    "Status": 0,
+    "StatusDuration": 0,
+    "BaseDamageBonus": 0.0,
+    "FactionMultiplier": 1.0
+  }
+}
