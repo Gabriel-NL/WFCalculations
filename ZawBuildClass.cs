@@ -9,13 +9,15 @@ namespace WFCalculations
         public float viral_dmg = 0;
 
         //Advanced damage values
-        public float base_dmg = 0;
+        private double base_dmg = 0;
+        private double modified_dmg { get; set; }
 
 
         //Modifiers
         public float atk_speed = 0;
-        public float crit_chance = 0;
-        public float crit_multiplier = 0;
+        public double crit_chance = 0.0;
+        public double crit_multiplier = 0;
+        public int crit_tier = 0;
         public float status_chance = 0;
         public float reach = 0;
         public float riven_disposition = 0;
@@ -28,7 +30,7 @@ namespace WFCalculations
         //Others
         public bool is_one_handed = false;
         public float dmg_bonus = 0;
-        public float dmg_bonus_multiplier = 0;
+        public float dmg_bonus_multiplier = 1;
         public string weapon_type = "";
 
         public ZawBuildClass(string strike, string grip, string link)
@@ -39,8 +41,15 @@ namespace WFCalculations
             GripStats(grip);
             StrikeStats(strike);
             LinkStats(link);
-            DistributeExtraDmg();
+            if (dmg_bonus != 0)
+            {
+
+                DistributeExtraDmg();
+            }
+
             this.base_dmg = impact_dmg + puncture_dmg + slash_dmg + viral_dmg;
+
+            this.modified_dmg = DetectOverCrit();
 
 
         }
@@ -53,61 +62,61 @@ namespace WFCalculations
                 case "Jayap":
                     is_one_handed = false;
                     dmg_bonus += 0;
-                    atk_speed = 0.917f;
+                    atk_speed += 0.917f;
                     break;
 
                 case "Korb":
                     is_one_handed = true;
                     dmg_bonus += 28;
-                    atk_speed = 0.783f;
+                    atk_speed += 0.783f;
                     break;
 
                 case "Kroostra":
                     is_one_handed = false;
                     dmg_bonus += 14;
-                    atk_speed = 0.850f;
+                    atk_speed += 0.850f;
                     break;
 
                 case "Kwath":
                     is_one_handed = true;
                     dmg_bonus += 14;
-                    atk_speed = 0.850f;
+                    atk_speed += 0.850f;
                     break;
 
                 case "Laka":
                     is_one_handed = true;
                     dmg_bonus += 0;
-                    atk_speed = 0.917f;
+                    atk_speed += 0.917f;
                     break;
 
                 case "Peye":
                     is_one_handed = true;
-                    dmg_bonus += -4;
-                    atk_speed = 1.000f;
+                    dmg_bonus -= 4;
+                    atk_speed += 1.000f;
                     break;
 
                 case "Seekalla":
                     is_one_handed = false;
-                    dmg_bonus += -4;
-                    atk_speed = 1.000f;
+                    dmg_bonus -= 4;
+                    atk_speed += 1.000f;
                     break;
 
                 case "Shtung":
                     is_one_handed = false;
                     dmg_bonus += 28;
-                    atk_speed = 0.783f;
+                    atk_speed += 0.783f;
                     break;
 
                 case "Plague Akwin":
                     is_one_handed = true;
-                    dmg_bonus += -2;
-                    atk_speed = 0.950f;
+                    dmg_bonus -= 2;
+                    atk_speed += 0.950f;
                     break;
 
                 case "Plague Bokwin":
                     is_one_handed = false;
                     dmg_bonus += 7;
-                    atk_speed = 0.883f;
+                    atk_speed += 0.883f;
                     break;
 
                 default:
@@ -515,6 +524,41 @@ namespace WFCalculations
 
         }
 
+        public double DetectOverCrit()
+        {
+            if (crit_chance > 100)
+            {
+                crit_tier = (int)(crit_chance / 100f);
+                crit_chance %= 100f;
+
+                return Criting(base_dmg, crit_tier - 1);
+            }
+            else
+            {
+                return base_dmg;
+            }
+
+        }
+        public double Criting(double base_dmg, double crit_tier)
+        {
+            double multiplier = crit_multiplier + ((crit_multiplier * crit_tier) - 1 * crit_tier);
+            base_dmg = base_dmg * multiplier;
+            return base_dmg;
+        }
+
+        public void ShowAdvancedStats()
+        {
+            Console.WriteLine($"{strike}/{grip}/{link}");
+
+            Console.WriteLine($"Base dmg per hit={modified_dmg}");
+            Console.WriteLine($"Crit dmg={Criting(base_dmg, crit_tier)}");
+
+        }
+        public double GetFinalDmg()
+        {
+            return modified_dmg;
+        }
+
         public void ShowStats()
         {
 
@@ -529,7 +573,7 @@ namespace WFCalculations
             Console.WriteLine($"Crit multiplier={crit_multiplier}x");
             Console.WriteLine($"Status chance={status_chance}%");
 
-            Console.WriteLine($"Impact={Math.Round(impact_dmg, 1)} / Puncture={Math.Round(puncture_dmg, 1)} / Slash={Math.Round(slash_dmg, 1)} / Viral={Math.Round(viral_dmg, 1)}");
+            Console.WriteLine($"Impact={Math.Round(impact_dmg, 3)} / Puncture={Math.Round(puncture_dmg, 1)} / Slash={Math.Round(slash_dmg, 1)} / Viral={Math.Round(viral_dmg, 1)}");
             Console.WriteLine($"Base dmg={base_dmg}");
 
 

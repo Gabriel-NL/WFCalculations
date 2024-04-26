@@ -10,7 +10,9 @@
         static void Main(string[] args)
         {
             Console.Clear();
-            ZawBuildClass BestZaw = new ZawBuildClass("", "", "");
+
+            ZawBuildClass BestZaw = new ZawBuildClass("Sample", "Sample", "Sample");
+
 
             foreach (var strike in PossibleStrikes())
             {
@@ -18,17 +20,25 @@
                 {
                     foreach (var link in PossibleLinks())
                     {
+
                         ZawBuildClass zaw = new ZawBuildClass(strike, grip, link);
-                        if (zaw.base_dmg > BestZaw.base_dmg || zaw.base_dmg == 0)
+
+                        if ((zaw.GetFinalDmg() > BestZaw.GetFinalDmg()) || (zaw.GetFinalDmg() == 0))
                         {
-                            BestZaw = zaw;
+                            if (zaw.weapon_type == "Dagger")
+                            {
+                                BestZaw = zaw;
+
+                            }
+
                         }
 
                     }
                 }
             }
-            BestZaw.ShowStats();
-
+            BestZaw.ShowAdvancedStats();
+            StanceData stanceData = new StanceData(BestZaw.GetFinalDmg(), BestZaw.weapon_type, "Stanceless");
+            Console.WriteLine($"This zaw in full combo causes {stanceData.StanceDamage()} damage");
 
 
         }
