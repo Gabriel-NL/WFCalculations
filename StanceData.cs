@@ -21,23 +21,26 @@ namespace WFCalculations
         public List<StanceHit> DaggerStanceHits(double base_dmg, string stance_name)
         {
             List<StanceHit> stance_damage_values = new List<StanceHit>();
+
             switch (stance_name)
             {
                 case "Stanceless":
-                    StanceHit hit1 = new StanceHit(base_dmg);
-                    stance_damage_values.Add(hit1);
+                    StanceHit hit;
+                    hit = new StanceHit(base_dmg);
+                    stance_damage_values.Add(hit);
 
-                    StanceHit hit2 = new StanceHit(base_dmg);
-                    hit2.multiplier = 3;
-                    stance_damage_values.Add(hit2);
+                    hit = new StanceHit(base_dmg);
+                    hit.multiplier = 3;
+                    stance_damage_values.Add(hit);
 
-                    StanceHit hit3 = new StanceHit(base_dmg);
-                    stance_damage_values.Add(hit3);
+                    hit = new StanceHit(base_dmg);
+                    stance_damage_values.Add(hit);
 
-                    StanceHit hit4 = new StanceHit(base_dmg);
-                    hit4.multiplier = 2;
-                    hit4.procBleeding = true;
-                    stance_damage_values.Add(hit4);
+                    hit = new StanceHit(base_dmg);
+                    hit.multiplier = 2;
+                    hit.procBleeding = true;
+                    stance_damage_values.Add(hit);
+
                     return stance_damage_values;
 
                 default:
@@ -52,7 +55,7 @@ namespace WFCalculations
             double total_dmg = 0;
             foreach (StanceHit hit in stance_damage_values)
             {
-                total_dmg += hit.StanceDmg();
+                total_dmg += hit.HitDmg();
             }
 
             return total_dmg;
@@ -63,23 +66,5 @@ namespace WFCalculations
 
 
 
-    public class StanceHit
-    {
-        public double base_dmg;
-        public float multiplier = 1;
-        public bool procImpact, procPuncture, procBleeding, procExplosion, procKnockdown, procLifted, procStagger, procRagdoll, procFinisher = false;
-        public bool spin, ranged, thrust = false;
-        public float slamDmgMultiplier, slamRadialDmgMultiplier = 1f;
 
-        public StanceHit(double base_dmg)
-        {
-            this.base_dmg = base_dmg;
-        }
-
-        public double StanceDmg()
-        {
-            return base_dmg * multiplier;
-        }
-
-    }
 }
