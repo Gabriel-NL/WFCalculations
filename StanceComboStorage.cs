@@ -435,7 +435,7 @@ namespace WFCalculations
 
 
 
-        public Stance(string stance_name)
+        public Stance(string stance_name) : this()
         {
             this.stance_name = stance_name;
         }
@@ -453,7 +453,7 @@ namespace WFCalculations
 
         public float slamDmgMultiplier, slamRadialDmgMultiplier = 1f;
 
-        public StanceHit(double baseDamage)
+        public StanceHit(double baseDamage) : this()
         {
             base_dmg = baseDamage;
         }
