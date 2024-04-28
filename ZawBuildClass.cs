@@ -548,11 +548,11 @@ namespace WFCalculations
 
         public void ShowAdvancedStats()
         {
+            Console.WriteLine(Constants.SEPARATOR);
             Console.WriteLine($"{strike}/{grip}/{link}");
-
             Console.WriteLine($"Base dmg per hit={modified_dmg}");
             Console.WriteLine($"Crit dmg={Criting(base_dmg, crit_tier)}");
-
+            Console.WriteLine(Constants.SEPARATOR);
         }
         public double GetFinalDmg()
         {
@@ -561,7 +561,7 @@ namespace WFCalculations
 
         public void ShowStats()
         {
-
+            Console.WriteLine(Constants.SEPARATOR);
             Console.WriteLine($"Weapon type={weapon_type}");
             Console.WriteLine($"Reach ={reach}");
             Console.WriteLine($"RD={riven_disposition}");
@@ -573,8 +573,9 @@ namespace WFCalculations
             Console.WriteLine($"Crit multiplier={crit_multiplier}x");
             Console.WriteLine($"Status chance={status_chance}%");
 
-            Console.WriteLine($"Impact={Math.Round(impact_dmg, 3)} / Puncture={Math.Round(puncture_dmg, 1)} / Slash={Math.Round(slash_dmg, 1)} / Viral={Math.Round(viral_dmg, 1)}");
+            Console.WriteLine($"Impact={Math.Round(impact_dmg, 1)} / Puncture={Math.Round(puncture_dmg, 1)} / Slash={Math.Round(slash_dmg, 1)} / Viral={Math.Round(viral_dmg, 1)}");
             Console.WriteLine($"Base dmg={base_dmg}");
+            Console.WriteLine(Constants.SEPARATOR);
 
 
 
