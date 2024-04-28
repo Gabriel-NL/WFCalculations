@@ -36,9 +36,10 @@
                     }
                 }
             }
-            BestZaw.ShowAdvancedStats();
-            StanceData stanceData = new StanceData(BestZaw.GetFinalDmg(), BestZaw.weapon_type, "Stanceless");
-            Console.WriteLine($"This zaw in full combo causes {stanceData.StanceDamage()} damage");
+
+            StanceComboStorage stanceData = new StanceComboStorage(BestZaw.weapon_type);
+            stanceData.CalculateStanceData(BestZaw.GetFinalDmg());
+
 
 
         }

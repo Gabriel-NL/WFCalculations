@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WFCalculations")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a5ff4e31dc1454922e3bc0679fda06b166b8819")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85e3092bfab7cbc09cdb3e78f9d860b799c51321")]
 [assembly: System.Reflection.AssemblyProductAttribute("WFCalculations")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WFCalculations")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
