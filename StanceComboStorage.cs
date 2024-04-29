@@ -1,16 +1,78 @@
+using Microsoft.VisualBasic;
+
 namespace WFCalculations
 {
     public class StanceComboStorage
     {
 
         public string weapon_type;
+        public double base_dmg;
+
         public Stance[] stances;
 
 
-        public StanceComboStorage(string weapon_type)
+        public StanceComboStorage(string weapon_type, double base_dmg)
         {
             this.weapon_type = weapon_type;
+            this.base_dmg = base_dmg;
         }
+
+
+        public void ShowAllStanceData(Stance[] stances)
+        {
+            Console.WriteLine($"The damage values for {weapon_type} are:");
+
+            Console.WriteLine(Constants.SEPARATOR);
+
+            foreach (Stance stance in stances)
+            {
+                foreach (Combo combo in stance.AllCombos)
+                {
+                    Console.WriteLine($"Stance: {stance.StanceName}, Combo: {combo.ComboName}");
+                    Console.WriteLine($"Combo damage: {CalculateDmg(combo.AllHits)} hit count: {combo.AllHits.Length} combo duration: {combo.ComboDuration}");
+                    Console.WriteLine(Constants.SEPARATOR);
+                }
+            }
+
+            //Console.WriteLine($"Neutral combo causes {CalculateDmg(stance.neutralCombo)} damage with {stance.neutralCombo.Length} hits");
+        }
+
+        public void ShowStrongestStanceForWeapon(Stance[] stances)
+        {
+            Console.WriteLine($"The best combo for {this.weapon_type} is:");
+            Console.WriteLine(Constants.SEPARATOR);
+
+            Combo bestCombo = new Combo();
+            String bestStanceName = "";
+            foreach (Stance stance in stances)
+            {
+                foreach (Combo combo in stance.AllCombos)
+                {
+
+                    if (bestCombo.ComboName == null || (CalculateDmg(combo.AllHits)) > (CalculateDmg(bestCombo.AllHits)))
+                    {
+                        bestCombo = combo;
+                        bestStanceName = stance.StanceName;
+                    }
+                }
+            }
+            Console.WriteLine($"The {bestCombo.ComboName} from {bestStanceName} has the most damage");
+            Console.WriteLine($"TotalDmg: {CalculateDmg(bestCombo.AllHits)}");
+
+        }
+
+        public double CalculateDmg(StanceHit[] combo)
+        {
+            double total_dmg = 0;
+            foreach (StanceHit hit in combo)
+            {
+
+                total_dmg += hit.HitDmg(this.base_dmg);
+            }
+            return total_dmg;
+        }
+
+
 
         public void CalculateStanceData(double base_dmg)
         {
@@ -18,345 +80,15 @@ namespace WFCalculations
             {
                 case "Dagger":
 
-                    stances = [
-                        new Stance("Stanceless")
-                        {
-                        neutralCombo =
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 2.0f, procBleeding = true },
-                            ],
-                        neutralComboDuration = 1,
-
-                        forwardCombo =
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 2.0f, procBleeding = true },
-                            ],
-                        forwardComboDuration = 1,
-
-                        forwardAndBlockCombo =
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 2.0f, procBleeding = true }
-                            ],
-                        forwardAndBlockComboDuration = 1
-                        },
-
-                        new Stance("Homing fang")
-                        {
-                        neutralCombo =
-                            [
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 3.0f ,procImpact=true},
-
-                            new StanceHit(base_dmg) { multiplier = 3.0f},
-
-                            new StanceHit(base_dmg) { multiplier = 3.0f},
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 4.0f, procBleeding = true,procKnockdown= true }
-                            ],
-                        neutralComboDuration = 2.8,
-
-                        forwardCombo =
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-
-                            new StanceHit(base_dmg){spin=true},
-                            new StanceHit(base_dmg){spin=true}
-                            ],
-                        forwardComboDuration = 1.4,
-
-                        forwardAndBlockCombo =
-                            [
-                            new StanceHit(base_dmg){ multiplier = 2.0f ,procBleeding=true},
-
-                            new StanceHit(base_dmg){spin=true},
-                            new StanceHit(base_dmg){spin=true},
-                            new StanceHit(base_dmg){spin=true},
-
-                            new StanceHit(base_dmg){multiplier=3.0f,procLifted=true}
-
-                            ],
-                        forwardAndBlockComboDuration = 1.7,
-
-                        blockCombo =
-                            [
-                            new StanceHit(base_dmg){ multiplier = 2.0f ,procBleeding=true},
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg){ multiplier = 3.0f ,procImpact=true},
-
-                            new StanceHit(base_dmg){ multiplier = 3.0f},
-
-                            new StanceHit(base_dmg){ multiplier = 3.0f},
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg){ multiplier = 4.0f,procBleeding=true,procKnockdown=true},
-
-                            ],
-                        blockComboDuration = 2.8
-                        },
-
-                        new Stance("Stinging thorn")
-                        {
-                        neutralCombo =
-                            [
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-                            new StanceHit(base_dmg) { procImpact=true},
-
-                            new StanceHit(base_dmg) { procBleeding = true },
-                            new StanceHit(base_dmg) { multiplier = 2.0f , procBleeding = true },
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-                            new StanceHit(base_dmg) { multiplier = 2.0f , procBleeding = true},
-
-                            new StanceHit(base_dmg) { multiplier = 4.0f , procKnockdown = true}
-
-                            ],
-                        neutralComboDuration = 4.0,
-
-                        forwardCombo =
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 2.0f }
-                            ],
-                        forwardComboDuration = 1.8,
-
-                        forwardAndBlockCombo =
-                            [
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-                            new StanceHit(base_dmg) { multiplier = 2.0f , procBleeding = true },
-
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-                            new StanceHit(base_dmg) { multiplier = 1.0f , slam = true, procKnockdown=true },
-                            ],
-                        forwardAndBlockComboDuration = 2.7,
-
-                        blockCombo =
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-                            new StanceHit(base_dmg) { multiplier = 3.0f, procImpact=true },
-
-                            new StanceHit(base_dmg) { multiplier = 2.0f,procBleeding=true },
-
-                            new StanceHit(base_dmg) { multiplier = 4.0f,procRagdoll=true },
-                            ],
-                        blockComboDuration = 2.4
-
-                        },
-
-                        new Stance("Pointed wind")
-                        {
-                        neutralCombo =
-                            [
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-
-                            new StanceHit(base_dmg){spin=true,procBleeding=true},
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-                            new StanceHit(base_dmg) { multiplier = 3.0f,procImpact=true },
-
-                            ],
-                        neutralComboDuration = 1.6,
-
-                        forwardCombo =
-                            [
-                            new StanceHit(base_dmg),
-
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 2.0f,spin=true },
-                            new StanceHit(base_dmg) { multiplier = 1.0f }
-                            ],
-                        forwardComboDuration = 1.2,
-
-                        forwardAndBlockCombo =
-                            [
-                            new StanceHit(base_dmg),
-
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 2.0f,spin=true },
-                            new StanceHit(base_dmg) { multiplier = 1.0f }
-                            ],
-                        forwardAndBlockComboDuration = 1.2,
-
-                        blockCombo =
-                            [
-                            new StanceHit(base_dmg) { multiplier = 2.0f },
-
-                            new StanceHit(base_dmg) { spin=true,procBleeding=true},
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-
-                            new StanceHit(base_dmg) { multiplier = 3.0f },
-                            new StanceHit(base_dmg) { multiplier = 3.0f, procImpact=true },
-
-
-                            ],
-                        blockComboDuration = 1.6
-
-                        },
-
-                    ];
-                    ShowStanceData(stances);
+                    stances = StanceList.DAGGERSTANCES;
+                    //ShowAllStanceData(stances);
+                    ShowStrongestStanceForWeapon(stances);
                     break;
 
                 case "Staff":
-                    stances = [
-                        new Stance("Stanceless")
-                        {
-                            neutralCombo=
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            ],
-                            neutralComboDuration=1,
 
-                            forwardCombo=
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            ],
-                            forwardComboDuration=1,
+                    stances = StanceList.STAFFSTANCES;
 
-                            forwardAndBlockCombo=
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            ],
-                            forwardAndBlockComboDuration=1,
-
-                        },
-
-                        new Stance("Flailing Branch")
-                        {
-                            neutralCombo=
-                            [
-                            new StanceHit(base_dmg){multiplier=3.0f,procImpact=true},
-                            new StanceHit(base_dmg){multiplier=2.0f},
-
-                            new StanceHit(base_dmg){multiplier=4.0f,procKnockdown=true},
-                            ],
-                            neutralComboDuration=2.4,
-
-                            forwardCombo=
-                            [
-                            new StanceHit(base_dmg),
-
-                            new StanceHit(base_dmg){multiplier=3.0f},
-
-                            new StanceHit(base_dmg){multiplier=2.0f},
-                            new StanceHit(base_dmg){multiplier=4.0f},
-                            ],
-                            forwardComboDuration=1.9,
-
-                            forwardAndBlockCombo=
-                            [
-                            new StanceHit(base_dmg){multiplier=2.0f,procImpact=true},
-
-                            new StanceHit(base_dmg){multiplier=3.0f},
-                            new StanceHit(base_dmg){multiplier=3.0f,procKnockdown=true},
-                            new StanceHit(base_dmg){slam=true,procImpact=true},
-                            ],
-                            forwardAndBlockComboDuration=2.0,
-
-                            blockCombo=
-                            [
-                            new StanceHit(base_dmg){multiplier=3.0f,procImpact=true},
-                            new StanceHit(base_dmg){multiplier=2.0f},
-
-                            new StanceHit(base_dmg){multiplier=4.0f,procKnockdown=true},
-                            ],
-                            blockComboDuration=2.4,
-                        },
-
-                        new Stance("Clashing Forest")
-                        {
-                            neutralCombo=
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg){procLifted=true},
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg){multiplier=0.5f},
-
-                            new StanceHit(base_dmg){multiplier=3.0f},
-
-                            new StanceHit(base_dmg){multiplier=2.0f},
-                            new StanceHit(base_dmg){ multiplier=4.0f,procKnockdown=true},
-                            ],
-                            neutralComboDuration=1.9,
-
-                            forwardCombo=
-                            [
-                            new StanceHit(base_dmg),
-
-                            new StanceHit(base_dmg),
-
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg){multiplier=2.0f},
-                            ],
-                            forwardComboDuration=2.0,
-
-                            forwardAndBlockCombo=
-                            [
-                            new StanceHit(base_dmg){multiplier=2.0f},
-                            new StanceHit(base_dmg){multiplier=2.0f},
-
-                            new StanceHit(base_dmg){multiplier=3.0f,procRagdoll=true},
-                            new StanceHit(base_dmg){multiplier=3.0f,procRagdoll=true},
-                            ],
-                            forwardAndBlockComboDuration=2.1,
-
-                            blockCombo=
-                            [
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg){procLifted=true},
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg),
-                            new StanceHit(base_dmg){multiplier=0.5f},
-
-                            new StanceHit(base_dmg){multiplier=3.0f},
-
-                            new StanceHit(base_dmg){multiplier=2.0f},
-                            new StanceHit(base_dmg){multiplier=4.0f,procKnockdown=true},
-
-                            ],
-                            blockComboDuration=1.9,
-                        },
-                    ];
-                    ShowStanceData(stances);
                     break;
                 case "Machete":
                     break;
@@ -380,39 +112,6 @@ namespace WFCalculations
 
             }
 
-        }
-
-        public void ShowStanceData(Stance[] stances)
-        {
-            Console.WriteLine($"The damage values for {weapon_type} are:");
-
-
-            Console.WriteLine(Constants.SEPARATOR);
-            foreach (Stance stance in stances)
-            {
-                Console.WriteLine($"Combo: {stance.stance_name}");
-                Console.WriteLine($"Neutral combo causes {CalculateDmg(stance.neutralCombo)} damage with {stance.neutralCombo.Length} hits");
-                Console.WriteLine($"Forward combo causes {CalculateDmg(stance.forwardCombo)} damage with {stance.forwardCombo.Length} hits");
-                Console.WriteLine($"Forward and Block combo causes {CalculateDmg(stance.forwardAndBlockCombo)} damage with {stance.forwardAndBlockCombo.Length} hits");
-                if (stance.blockCombo is not null)
-                {
-                    Console.WriteLine($"Block combo causes {CalculateDmg(stance.blockCombo)} damage with {stance.blockCombo.Length} hits");
-                }
-                Console.WriteLine(Constants.SEPARATOR);
-
-
-            }
-
-        }
-
-        public double CalculateDmg(StanceHit[] combo)
-        {
-            double total_dmg = 0;
-            foreach (StanceHit hit in combo)
-            {
-                total_dmg += hit.HitDmg();
-            }
-            return total_dmg;
         }
 
 

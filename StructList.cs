@@ -50,42 +50,43 @@ namespace WFCalculations
     public struct Stance
     {
 
-        public string stance_name { get; set; }
-        public StanceHit[] neutralCombo { get; set; }
-        public double neutralComboDuration { get; set; }
-        public StanceHit[] forwardCombo { get; set; }
-        public double forwardComboDuration { get; set; }
-        public StanceHit[] forwardAndBlockCombo { get; set; }
-        public double forwardAndBlockComboDuration { get; set; }
-        public StanceHit[] blockCombo { get; set; }
-        public double blockComboDuration { get; set; }
+        public string StanceName;
+
+        public Combo[] AllCombos { get; set; }
 
 
-
-
-        public Stance(string stance_name) : this()
+        public Stance(string StanceName) : this()
         {
-            this.stance_name = stance_name;
+            this.StanceName = StanceName;
         }
 
     }
 
-
+    public struct Combo
+    {
+        public string ComboName { get; set; }
+        public StanceHit[] AllHits { get; set; }
+        public float ComboDuration { get; set; }
+        public Combo(string combo_name) : this()
+        {
+            this.ComboName = combo_name;
+        }
+    }
     public struct StanceHit
     {
 
-        public double base_dmg { get; set; } = 0;
         public float multiplier { get; set; } = 1;
         public bool procImpact, procPuncture, procBleeding, procExplosion, procKnockdown, procLifted, procStagger, procRagdoll, procFinisher = false;
         public bool spin, ranged, thrust, slam = false;
 
         public float slamDmgMultiplier, slamRadialDmgMultiplier = 1f;
 
-        public StanceHit(double baseDamage) : this()
+
+        public StanceHit()
         {
-            base_dmg = baseDamage;
+
         }
-        public double HitDmg()
+        public readonly double HitDmg(double base_dmg)
         {
             return base_dmg * multiplier;
         }

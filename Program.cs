@@ -23,7 +23,6 @@
             foreach (var combination in combinations)
             {
                 // Access properties using dot notation
-                Console.WriteLine($"Strike: {combination.strike}, Grip: {combination.grip}, Link: {combination.link}");
                 ZawBuildClass zaw = new ZawBuildClass(combination.strike, combination.grip, combination.link);
 
                 if ((zaw.GetFinalDmg() > BestZaw.GetFinalDmg()) || (zaw.GetFinalDmg() == 0))
@@ -36,7 +35,7 @@
                 }
             }
             BestZaw.ShowStats();
-            StanceComboStorage stanceData = new StanceComboStorage(BestZaw.weapon_type);
+            StanceComboStorage stanceData = new StanceComboStorage(BestZaw.weapon_type, BestZaw.GetFinalDmg());
             stanceData.CalculateStanceData(BestZaw.GetFinalDmg());
 
 
