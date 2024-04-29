@@ -419,47 +419,5 @@ namespace WFCalculations
 
     }
 
-    public struct Stance
-    {
 
-        public string stance_name { get; set; }
-        public StanceHit[] neutralCombo { get; set; }
-        public double neutralComboDuration { get; set; }
-        public StanceHit[] forwardCombo { get; set; }
-        public double forwardComboDuration { get; set; }
-        public StanceHit[] forwardAndBlockCombo { get; set; }
-        public double forwardAndBlockComboDuration { get; set; }
-        public StanceHit[] blockCombo { get; set; }
-        public double blockComboDuration { get; set; }
-
-
-
-
-        public Stance(string stance_name) : this()
-        {
-            this.stance_name = stance_name;
-        }
-
-    }
-
-
-    public struct StanceHit
-    {
-
-        public double base_dmg { get; set; } = 0;
-        public float multiplier { get; set; } = 1;
-        public bool procImpact, procPuncture, procBleeding, procExplosion, procKnockdown, procLifted, procStagger, procRagdoll, procFinisher = false;
-        public bool spin, ranged, thrust, slam = false;
-
-        public float slamDmgMultiplier, slamRadialDmgMultiplier = 1f;
-
-        public StanceHit(double baseDamage) : this()
-        {
-            base_dmg = baseDamage;
-        }
-        public double HitDmg()
-        {
-            return base_dmg * multiplier;
-        }
-    }
 }

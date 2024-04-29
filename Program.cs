@@ -3,6 +3,7 @@
     using WFCalculations;
     using System;
     using System.Runtime.InteropServices;
+    using System.Linq;
 
 
     public class Program  // Add the class name "Program"
@@ -14,24 +15,22 @@
             ZawBuildClass BestZaw = new ZawBuildClass("Sample", "Sample", "Sample");
 
 
-            foreach (var strike in PossibleStrikes())
+            var combinations = from strike in Constants.ALLZAWSTRIKES
+                               from grip in Constants.ALLZAWGRIPS
+                               from link in Constants.ALLZAWLINKS
+                               select new { strike, grip, link };
+
+            foreach (var combination in combinations)
             {
-                foreach (var grip in PossibleGrips())
+                // Access properties using dot notation
+                Console.WriteLine($"Strike: {combination.strike}, Grip: {combination.grip}, Link: {combination.link}");
+                ZawBuildClass zaw = new ZawBuildClass(combination.strike, combination.grip, combination.link);
+
+                if ((zaw.GetFinalDmg() > BestZaw.GetFinalDmg()) || (zaw.GetFinalDmg() == 0))
                 {
-                    foreach (var link in PossibleLinks())
+                    if (zaw.weapon_type == "Dagger")
                     {
-
-                        ZawBuildClass zaw = new ZawBuildClass(strike, grip, link);
-
-                        if ((zaw.GetFinalDmg() > BestZaw.GetFinalDmg()) || (zaw.GetFinalDmg() == 0))
-                        {
-                            if (zaw.weapon_type == "Dagger")
-                            {
-                                BestZaw = zaw;
-
-                            }
-
-                        }
+                        BestZaw = zaw;
 
                     }
                 }
@@ -43,66 +42,6 @@
 
 
         }
-        public static List<string> PossibleStrikes()
-        {
-            // Strike list
-            List<string> strikes = new List<string>
-        {
-        "Balla",
-        "Cyath",
-        "Dehtat",
-        "Dokrahm",
-        "Kronsh",
-        "Mewan",
-        "Ooltha",
-        "Rabvee",
-        "Sepfahn",
-        "Plague Keewar",
-        "Plague Kripath"
-        };
-            return strikes;
-        }
-        public static List<string> PossibleGrips()
-        {
 
-            List<string> grips = new List<string>
-        {
-        "Jayap",
-        "Korb",
-        "Kroostra",
-        "Kwath",
-        "Laka",
-        "Peye",
-        "Seekalla",
-        "Shtung",
-        "Plague Akwin",
-        "Plague Bokwin"
-        };
-            return grips;
-        }
-        public static List<string> PossibleLinks()
-        {
-            // Link list
-            List<string> links = new List<string>
-        {
-        "Jai",
-        "Ruhang",
-        "Jai II",
-        "Ruhang II",
-        "Vargeet Jai",
-        "Vargeet Ruhang",
-        "Ekwana Jai",
-        "Ekwana Ruhang",
-        "Vargeet II Jai",
-        "Vargeet II Ruhang",
-        "Ekwana II Jai",
-        "Ekwana II Ruhang",
-        "Vargeet Jai II",
-        "Vargeet Ruhang II",
-        "Ekwana Jai II",
-        "Ekwana Ruhang II"
-        };
-            return links;
-        }
     }
 }
