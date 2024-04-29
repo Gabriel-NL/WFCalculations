@@ -2,7 +2,7 @@ using Microsoft.VisualBasic;
 
 namespace WFCalculations
 {
-    public class StanceComboStorage
+    public class StanceCalculations
     {
 
         public string weapon_type;
@@ -11,7 +11,7 @@ namespace WFCalculations
         public Stance[] stances;
 
 
-        public StanceComboStorage(string weapon_type, double base_dmg)
+        public StanceCalculations(string weapon_type, double base_dmg)
         {
             this.weapon_type = weapon_type;
             this.base_dmg = base_dmg;

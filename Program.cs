@@ -35,7 +35,7 @@
                 }
             }
             BestZaw.ShowStats();
-            StanceComboStorage stanceData = new StanceComboStorage(BestZaw.weapon_type, BestZaw.GetFinalDmg());
+            StanceCalculations stanceData = new StanceCalculations(BestZaw.weapon_type, BestZaw.GetFinalDmg());
             stanceData.CalculateStanceData(BestZaw.GetFinalDmg());
 
 
