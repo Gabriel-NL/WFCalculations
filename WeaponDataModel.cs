@@ -1,36 +1,69 @@
 public class WeaponDataModel
 {
-    //Theorical Details
-    public required string Name { get; set; }
-    public required string Category { get; set; }
-    public required string Series { get; set; }
-    public required string Type { get; set; }
-    public required string SubType { get; set; }
-    public required string[] IsComponentFor { get; set; }
-    public required string MasteryRankRequirement { get; set; }
-    public required string RivenDisposition { get; set; }
-    public required string ReleaseDate { get; set; }
+    //Display vars
+    public string Name, Category, Series, Type, SubType = "";
 
-    //Pratical details
-    public int Impact { get; set; }
-    public int Puncture { get; set; }
-    public int Slash { get; set; }
-    public int CritChance { get; set; }
-    public int CritMultiplier { get; set; }
-    public int Status { get; set; }
-    public int StatusDuration { get; set; }
-    public double BaseDamageBonus { get; set; }
-    public double FactionMultiplier { get; set; }
+    public Dictionary<string, string> Components;
+    public string[] IsComponentFor { get; set; }
+    public int MasteryRankRequirement { get; set; }
+    public float RivenDisposition { get; set; }
+    public string ReleaseDate { get; set; }
 
-    //public WeaponDataModel(){   }
+    //Pratical vars
+    public float AtkSpeed, Reach = 1;
+    public Dictionary<string, float> DamageTypes;
+    public float CritChance, CritMultiplier, CritTier, StatusChance = 0;
+    public float StatusDuration = 6;
 
-    public double CalculateBaseDamage()
+    //Advanced vars
+
+
+
+
+    public WeaponDataModel()
     {
-        return Impact + Puncture + Slash;
+
     }
 
-    public double CalculateModifiedBaseDamage()
+    public float BaseDamage()
     {
-        return CalculateBaseDamage() * (1 + BaseDamageBonus) * (1 + FactionMultiplier);
+        float totalDamage = DamageTypes.Sum(x => x.Value);
+        if (CritChance > 100)
+        {
+            CritTier = (int)(CritChance / 100f);
+            CritChance %= 100f;
+            totalDamage = CritAttack(totalDamage, CritTier - 1);
+            return totalDamage;
+        }
+        else
+        {
+            return totalDamage;
+        }
+
+    }
+
+    public float QuantumBaseDmg()
+    {
+        float Quantum = BaseDamage() / 16;
+        float total_true_dmg = 0;
+
+        // Perform the calculation, but if Quantum is 0, set the result to 0
+        foreach (KeyValuePair<string, float> kvp in DamageTypes)
+        {
+
+            int Quantum_dmg = (kvp.Value != 0) ? (int)Math.Round(kvp.Value / Quantum) : 0;
+            float true_value = Quantum_dmg * Quantum;
+            total_true_dmg += true_value;
+        }
+
+        return total_true_dmg;
+    }
+
+
+    public float CritAttack(float base_dmg, float tier)
+    {
+        float multiplier = CritMultiplier + ((CritMultiplier * tier) - 1 * tier);
+        float crit_dmg = base_dmg * multiplier;
+        return crit_dmg;
     }
 }

@@ -3,7 +3,7 @@ namespace WFCalculations
 
     public static class ModList
     {
-        public static readonly ModData[] modlist =
+        public static readonly ModData[] MOD_LIST =
         [
 
             new ModData("Condition Overload")

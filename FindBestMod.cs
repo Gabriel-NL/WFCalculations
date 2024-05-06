@@ -4,33 +4,19 @@ namespace WFCalculations
 {
     public class FindBestMod
     {
-        ModData[] modlist;
+        WeaponDataModel weapon, modded_weapon;
 
-        public FindBestMod(ZawBuildClass weapon)
+
+        public FindBestMod(WeaponDataModel weapon)
         {
-
+            modded_weapon = weapon;
         }
 
-        public void InitializeModList()
+        public double ModifiedBaseDamage()
         {
-            modlist = [
-            new ModData("Primed Pressure Point"){
-                Type="Melee",
-                SubType="None",
-                Cost=14,
-                Restriction="None",
-                bonus= new ModBonus()
-                {
-                    BaseDmg=165
-                },
+            float base_dmg = weapon.BaseDamage();
 
-
-             },
-
-            ];
-
-
-
+            return 0;
         }
 
     }

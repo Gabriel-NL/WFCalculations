@@ -12,8 +12,7 @@
         {
             Console.Clear();
 
-            ZawBuildClass BestZaw = new ZawBuildClass("Sample", "Sample", "Sample");
-
+            WeaponDataModel BestZaw = new ZawBuildClass("Sample", "Sample", "Sample").built_weapon;
 
             var combinations = from strike in Constants.ALLZAWSTRIKES
                                from grip in Constants.ALLZAWGRIPS
@@ -22,25 +21,62 @@
 
             foreach (var combination in combinations)
             {
-                // Access properties using dot notation
-                ZawBuildClass zaw = new ZawBuildClass(combination.strike, combination.grip, combination.link);
+                WeaponDataModel weapon = new ZawBuildClass(combination.strike, combination.grip, combination.link).built_weapon;
 
-                if ((zaw.GetFinalDmg() > BestZaw.GetFinalDmg()) || (zaw.GetFinalDmg() == 0))
+                if ((weapon.BaseDamage() > BestZaw.BaseDamage()) || (BestZaw.BaseDamage() == 0))
                 {
-                    if (zaw.weapon_type == "Dagger")
+                    if (weapon.Type == "Dagger")
                     {
-                        BestZaw = zaw;
+                        BestZaw = weapon;
 
                     }
                 }
             }
-            BestZaw.ShowStats();
-            StanceCalculations stanceData = new StanceCalculations(BestZaw.weapon_type, BestZaw.GetFinalDmg());
-            stanceData.CalculateStanceData(BestZaw.GetFinalDmg());
+
+            ShowStats(BestZaw);
+            StanceCalculations stanceData = new StanceCalculations(BestZaw.Type, BestZaw.BaseDamage());
+            stanceData.CalculateStanceData(BestZaw.BaseDamage());
 
 
 
         }
+        public void ShowAdvancedStats(WeaponDataModel weapon)
+        {
+            Console.WriteLine(Constants.SEPARATOR);
+            foreach (var pair in weapon.Components)
+            {
+                Console.Write($"/{pair.Key}:{pair.Value}/");
+            }
+            Console.WriteLine($"Base dmg per hit={weapon.BaseDamage()}");
+            Console.WriteLine($"Crit dmg=");
+            Console.WriteLine(Constants.SEPARATOR);
+        }
+        public static void ShowStats(WeaponDataModel weapon)
+        {
+            Console.WriteLine(Constants.SEPARATOR);
+            Console.WriteLine($"Weapon type={weapon.Type}");
+            Console.WriteLine($"Reach ={weapon.Reach}");
+            Console.WriteLine($"RD={weapon.RivenDisposition}");
+            foreach (var pair in weapon.Components)
+            {
+                Console.Write($"/{pair.Key}:{pair.Value}/");
+            }
+
+            Console.WriteLine($"Atk Speed={weapon.AtkSpeed}");
+            Console.WriteLine($"Crit chance={weapon.CritChance}%");
+            Console.WriteLine($"Crit multiplier={weapon.CritMultiplier}x");
+            Console.WriteLine($"Status chance={weapon.StatusChance}%");
+
+            foreach (var pair in weapon.DamageTypes)
+            {
+                Console.Write($"/{pair.Key}={Math.Round(pair.Value, 1)}/");
+            }
+            Console.WriteLine($"Base dmg={weapon.BaseDamage()}");
+            Console.WriteLine(Constants.SEPARATOR);
+
+        }
+
+
 
     }
 }
