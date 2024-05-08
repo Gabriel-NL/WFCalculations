@@ -12,7 +12,7 @@ namespace WFCalculations
         public string Restriction = "None";
         public string Condition = "None";
 
-        public ModBonus bonus { get; set; }
+        public Dictionary<string, float> mod_bonus;
         public ModData(string name) : this()
         {
             this.Name = name;
@@ -20,32 +20,7 @@ namespace WFCalculations
 
     }
 
-    public struct ModBonus
-    {
-        public float BaseDmg, BaseDmgPerStatus, HeavyAttackDmg = 0;
-        public float PunctureDmg, ImpactDmg, SlashDmg, ToxinDmg, EletricityDmg, HeatDmg, ColdDmg = 0;
-        public (string Faction, float FDmg) FactionDmg = ("", 0);
 
-        public float CriticalChance = 0;
-        public float CriticalChanceForHeavyAttack = 0;
-
-        public float ExtraCriticalChance, CriticalChancePerCombo, CriticalMultiplier = 0;
-
-        public float StatusChance, StatusChancePerCombo, AdditiveStatusChance, StatusDuration = 0;
-
-        public float InitialCombo, ComboDuration, AddComboChance, HeavyEfficiency = 0;
-
-        public float AttackSpeed, Range, PunchThrough, ThrowDmg, Bounce, BlastRadius = 0;
-        public bool ExplodeOnBounce = false;
-
-
-
-        public ModBonus()
-        {
-
-        }
-
-    }
 
     public struct Stance
     {
