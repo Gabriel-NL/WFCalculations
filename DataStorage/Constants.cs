@@ -6,6 +6,21 @@ namespace WFCalculations
 
         public static string SEPARATOR = string.Join("-", Enumerable.Repeat('-', 20));
 
+        public static string IMPACT = "Impact";
+        public static string PUNCTURE = "PUNCTURE";
+        public static string SLASH = "Slash";
+        public static string COLD = "Cold";
+        public static string ELETRICITY = "Electricity";
+        public static string HEAT = "Heat";
+        public static string TOXIN = "Toxin";
+        public static string BLAST = "Blast";
+        public static string CORROSIVE = "Corrosive";
+        public static string GAS = "Gas";
+        public static string MAGNETIC = "Magnetic";
+        public static string RADIATION = "Radiation";
+        public static string VIRAL = "Viral";
+        public const string VOID = "Void";
+
         public static readonly string[] ALLZAWSTRIKES = new string[]
         {"Balla","Cyath","Dehtat","Dokrahm","Kronsh","Mewan","Ooltha","Rabvee","Sepfahn","Plague Keewar","Plague Kripath"};
         public static readonly string[] ALLZAWGRIPS = new string[]

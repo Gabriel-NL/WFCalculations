@@ -131,9 +131,9 @@ namespace WFCalculations
                         dmg_bonus_multiplier = 1;
                     }
 
-                    weapon.DamageTypes.Add("Impact", 11.2f);
-                    weapon.DamageTypes.Add("Puncture", 134.4f);
-                    weapon.DamageTypes.Add("Slash", 78.4f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 11.2f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 134.4f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 78.4f);
                     weapon.AtkSpeed += 0.083f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -153,9 +153,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.08f;
                     }
-                    weapon.DamageTypes.Add("Impact", 46f);
-                    weapon.DamageTypes.Add("Puncture", 11.5f);
-                    weapon.DamageTypes.Add("Slash", 172.5f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 46f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 11.5f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 172.5f);
                     weapon.AtkSpeed += 0.0f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -175,9 +175,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.09f;
                     }
-                    weapon.DamageTypes.Add("Impact", 22.4f);
-                    weapon.DamageTypes.Add("Puncture", 112.0f);
-                    weapon.DamageTypes.Add("Slash", 89.6f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 22.4f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 112.0f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 89.6f);
                     weapon.AtkSpeed += 0.083f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -197,9 +197,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 0.93f;
                     }
-                    weapon.DamageTypes.Add("Impact", 46.4f);
-                    weapon.DamageTypes.Add("Puncture", 108.1f);
-                    weapon.DamageTypes.Add("Slash", 154.5f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 46.4f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 108.1f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 154.5f);
                     weapon.AtkSpeed += 0.083f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -219,8 +219,8 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.07f;
                     }
-                    weapon.DamageTypes.Add("Impact", 163.8f);
-                    weapon.DamageTypes.Add("Slash", 70.2f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 163.8f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 70.2f);
                     weapon.AtkSpeed -= 0.067f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -240,9 +240,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.09f;
                     }
-                    weapon.DamageTypes.Add("Impact", 56.0f);
-                    weapon.DamageTypes.Add("Puncture", 78.4f);
-                    weapon.DamageTypes.Add("Slash", 89.6f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 56.0f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 78.4f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 89.6f);
                     weapon.AtkSpeed -= 0.067f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -262,9 +262,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1;
                     }
-                    weapon.DamageTypes.Add("Impact", 22.4f);
-                    weapon.DamageTypes.Add("Puncture", 89.6f);
-                    weapon.DamageTypes.Add("Slash", 112.0f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 22.4f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 89.6f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 112.0f);
                     weapon.AtkSpeed += 0.000f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -284,9 +284,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.08f;
                     }
-                    weapon.DamageTypes.Add("Impact", 140.4f);
-                    weapon.DamageTypes.Add("Puncture", 11.7f);
-                    weapon.DamageTypes.Add("Slash", 81.9f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 140.4f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 11.7f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 81.9f);
                     weapon.AtkSpeed -= 0.067f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -306,9 +306,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1;
                     }
-                    weapon.DamageTypes.Add("Impact", 22.6f);
-                    weapon.DamageTypes.Add("Puncture", 56.5f);
-                    weapon.DamageTypes.Add("Slash", 146.9f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 22.6f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 56.5f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 146.9f);
                     weapon.AtkSpeed += 0.000f;
                     weapon.CritChance = 20;
                     weapon.CritMultiplier = 2;
@@ -328,9 +328,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 0.85f;
                     }
-                    weapon.DamageTypes.Add("Impact", 88.0f);
-                    weapon.DamageTypes.Add("Puncture", 57.0f);
-                    weapon.DamageTypes.Add("Slash", 91.0f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 88.0f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 57.0f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 91.0f);
                     weapon.DamageTypes.Add("Viral", 70.0f);
                     weapon.AtkSpeed -= 0.033f;
                     weapon.CritChance = 18;
@@ -351,9 +351,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.08f;
                     }
-                    weapon.DamageTypes.Add("Impact", 30.0f);
-                    weapon.DamageTypes.Add("Puncture", 70.0f);
-                    weapon.DamageTypes.Add("Slash", 49.0f);
+                    weapon.DamageTypes.Add(Constants.IMPACT, 30.0f);
+                    weapon.DamageTypes.Add(Constants.PUNCTURE, 70.0f);
+                    weapon.DamageTypes.Add(Constants.SLASH, 49.0f);
                     weapon.DamageTypes.Add("Viral", 64.0f);
                     weapon.AtkSpeed += 0.033f;
                     weapon.CritChance = 22;

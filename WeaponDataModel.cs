@@ -1,3 +1,5 @@
+using WFCalculations;
+
 public class WeaponDataModel
 {
     //Display vars
@@ -42,21 +44,30 @@ public class WeaponDataModel
 
     }
 
-    public float QuantumBaseDmg()
+    public float QuantumBaseDmg(EnemyData enemy)
     {
-        float Quantum = BaseDamage() / 16;
+        float Quantum = BaseDamage() / 16; //15.625
         float total_true_dmg = 0;
+
 
         // Perform the calculation, but if Quantum is 0, set the result to 0
         foreach (KeyValuePair<string, float> kvp in DamageTypes)
         {
+            //int Quantum_dmg = (kvp.Value != 0) ? (int)Math.Round(kvp.Value / Quantum) : 0;
+            float Quantum_dmg = kvp.Value / Quantum;
+            float true_value = (int)Math.Round(Quantum_dmg) * Quantum;
 
-            int Quantum_dmg = (kvp.Value != 0) ? (int)Math.Round(kvp.Value / Quantum) : 0;
-            float true_value = Quantum_dmg * Quantum;
+            if (enemy.health_type.DmgMultipliers.ContainsKey(kvp.Key))
+            {
+
+                float multiplier = enemy.health_type.DmgMultipliers[kvp.Key];
+                true_value *= 1.25f;
+            }
             total_true_dmg += true_value;
         }
 
-        return total_true_dmg;
+        return (int)Math.Round(total_true_dmg);
+
     }
 
 

@@ -4,23 +4,21 @@ namespace WFCalculations
 {
     public class StanceCalculations
     {
-
-        public string weapon_type;
-        public double base_dmg;
-
         public Stance[] stances;
+        public WeaponDataModel weapon;
+        public EnemyData target;
 
 
-        public StanceCalculations(string weapon_type, double base_dmg)
+        public StanceCalculations(WeaponDataModel weapon, EnemyData target)
         {
-            this.weapon_type = weapon_type;
-            this.base_dmg = base_dmg;
+            this.weapon = weapon;
+            this.target = target;
         }
 
 
         public void ShowAllStanceData(Stance[] stances)
         {
-            Console.WriteLine($"The damage values for {weapon_type} are:");
+            Console.WriteLine($"The damage values for {weapon.Type} are:");
 
             Console.WriteLine(Constants.SEPARATOR);
 
@@ -39,7 +37,7 @@ namespace WFCalculations
 
         public void ShowStrongestStanceForWeapon(Stance[] stances)
         {
-            Console.WriteLine($"The best combo for {this.weapon_type} is:");
+            Console.WriteLine($"The best combo for {weapon.Type} is:");
             Console.WriteLine(Constants.SEPARATOR);
 
             Combo bestCombo = new Combo();
@@ -67,7 +65,7 @@ namespace WFCalculations
             foreach (StanceHit hit in combo)
             {
 
-                total_dmg += hit.HitDmg(this.base_dmg);
+                total_dmg += hit.GetMultiplier() * weapon.QuantumBaseDmg(target);
             }
             return total_dmg;
         }
@@ -76,7 +74,7 @@ namespace WFCalculations
 
         public void CalculateStanceData(double base_dmg)
         {
-            switch (weapon_type)
+            switch (weapon.Type)
             {
                 case "Dagger":
 

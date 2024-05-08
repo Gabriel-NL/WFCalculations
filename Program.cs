@@ -32,10 +32,20 @@
                     }
                 }
             }
+            WeaponDataModel weaponTest = new WeaponDataModel();
+            weaponTest.DamageTypes = new Dictionary<string, float>
+            {
+                {Constants.IMPACT, 55},
+                {Constants.PUNCTURE, 80},
+                {Constants.SLASH, 115},
 
-            ShowStats(BestZaw);
-            StanceCalculations stanceData = new StanceCalculations(BestZaw.Type, BestZaw.BaseDamage());
-            stanceData.CalculateStanceData(BestZaw.BaseDamage());
+            };
+            EnemyData enemy = DummyEnemyTest.ENEMIES["Charger"];
+            Console.WriteLine($"Base dmg: {weaponTest.BaseDamage()} Quantum dmg: {weaponTest.QuantumBaseDmg(enemy)}");
+
+            //ShowStats(BestZaw);
+            //StanceCalculations stanceData = new StanceCalculations(BestZaw.Type, BestZaw.BaseDamage());
+            //stanceData.CalculateStanceData(BestZaw.BaseDamage());
 
 
 

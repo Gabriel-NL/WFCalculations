@@ -90,5 +90,29 @@ namespace WFCalculations
         {
             return base_dmg * multiplier;
         }
+        public readonly double GetMultiplier()
+        {
+            return multiplier;
+        }
+    }
+    public struct EnemyData
+    {
+
+        public string faction;
+        public HealthType health_type;
+
+        public EnemyData(string faction, HealthType health_type)
+        {
+
+            this.faction = faction;
+            this.health_type = health_type;
+        }
+
+    }
+
+    public struct HealthType
+    {
+        public Dictionary<string, float> DmgMultipliers;
+        public HealthType() { }
     }
 }
