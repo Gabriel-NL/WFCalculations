@@ -13,10 +13,7 @@ namespace WFCalculations
         public string Condition = "None";
 
         public Dictionary<string, float> mod_bonus;
-        public ModData(string name) : this()
-        {
-            this.Name = name;
-        }
+        public ModData() { }
 
     }
 

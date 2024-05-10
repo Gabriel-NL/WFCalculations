@@ -18,282 +18,283 @@ namespace WFCalculations
         public static readonly string HeavyEfficiency = "Heavy Efficiency";
         public static readonly string SentientFactionDmg = "Sentient Faction Dmg";
 
+        public static readonly Dictionary<string, ModData> MOD_DICTIONARY = new Dictionary<string, ModData>()
+        {
 
-        public static readonly ModData[] MOD_LIST =
-        [
-
-            new ModData("Condition Overload")
-            {
+            {"Condition Overload", new ModData()
+                {
                 Type = "Melee",
                 Cost = 15,
-
-                mod_bonus= new Dictionary<string, float>(){
+                mod_bonus= new Dictionary<string, float>()
+                    {
                         {BaseDmgPS, 0.8f},
                     },
-
+                }
             },
-            new ModData("Primed Pressure Point")
-            {
-                Type = "Melee",
-
-                Cost = 14,
-                mod_bonus= new Dictionary<string, float>(){
+            { "Primed Pressure Point", new ModData()
+                {
+                    Type = "Melee",
+                    Cost = 14,
+                    mod_bonus= new Dictionary<string, float>()
+                    {
                         {BaseDmg, 1.65f},
                     },
-
-
+                }
             },
-            new ModData("Spoiled Strike")
-            {
-                Type = "Melee",
-
-                Cost = 7,
-
-                mod_bonus= new Dictionary<string, float>(){
+            {"Spoiled Strike", new ModData()
+                {
+                    Type = "Melee",
+                    Cost = 7,
+                    mod_bonus= new Dictionary<string, float>()
+                    {
                         {BaseDmg, 1f},
                         {AttackSpeed, -0.2f},
                     },
+                }
             },
-            new ModData("Auger Strike")
-            {
-                Type = "Melee",
-
-                Cost = 11,
-                mod_bonus= new Dictionary<string, float>(){
+            { "Auger Strike", new ModData()
+                {
+                    Type = "Melee",
+                    Cost = 11,
+                    mod_bonus= new Dictionary<string, float>()
+                    {
                         {PunctureDmg, 1.2f},
                     },
-
-
+                }
             },
-            new ModData("Buzz Kill")
-            {
-                Type = "Melee",
 
-                Cost = 11,
-
-                mod_bonus= new Dictionary<string, float>(){
+            { "Buzz Kill", new ModData()
+                {
+                    Type = "Melee",
+                    Cost = 11,
+                    mod_bonus= new Dictionary<string, float>()
+                    {
                         {SlashDmg, 1.2f},
                     },
-
-
+                }
             },
-            new ModData("Carnis Mandible")
-            {
-                Type = "Melee",
-
-                Cost = 9,
-                mod_bonus= new Dictionary<string, float>(){
-                        {SlashDmg, 0.9f},
-                        {StatusChance,0.6f},
+            { "Carnis Mandible", new ModData()
+                {
+                    Type = "Melee",
+                    Cost = 9,
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { SlashDmg, 0.9f },
+                        { StatusChance, 0.6f },
                     },
-
+                }
             },
-            new ModData("Collision Force")
-            {
-                Type = "Melee",
+            { "Collision Force", new ModData()
+                {
+                    Type = "Melee",
+                    Cost = 11,
+                    mod_bonus = new Dictionary<string, float>()
+        {
+            { ImpactDmg, 1.2f },
+        },
+    }
+},
+{ "Primed Heavy Trauma", new ModData()
+    {
+        Type = "Melee",
+        Cost = 12,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { ImpactDmg, 1.65f },
+        },
+    }
+},
+{ "Jagged Edge", new ModData()
+    {
+        Type = "Melee",
+        Cost = 7,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { SlashDmg, 0.9f },
+        },
+    }
+},
+{ "Jugulus Barbs", new ModData()
+    {
+        Type = "Melee",
+        Cost = 9,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { PunctureDmg, 0.9f },
+            { StatusChance, 0.6f },
+        },
+    }
+},
+{ "Rending Strike", new ModData()
+    {
+        Type = "Melee",
+        Cost = 9,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { SlashDmg, 0.6f },
+            { PunctureDmg, 0.8f },
+        },
+    }
+},
+{ "Saxum Thorax", new ModData()
+    {
+        Type = "Melee",
+        Cost = 9,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { ImpactDmg, 0.9f },
+            { StatusChance, 0.6f },
+        },
+    }
+},
+{ "Sundering Strike", new ModData()
+    {
+        Type = "Melee",
+        Cost = 7,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { PunctureDmg, 0.9f },
+        },
+    }
+},
+{ "Primed Fever Strike", new ModData()
+    {
+        Type = "Melee",
+        Cost = 16,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { ToxinDmg, 1.65f },
+        },
+    }
+},
+{ "Focus Energy", new ModData()
+    {
+        Type = "Melee",
+        Cost = 9,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { EletricityDmg, 0.6f },
+            { HeavyEfficiency, 0.4f },
+        },
+    }
+},
+{ "Molten Impact", new ModData()
+    {
+        Type = "Melee",
+        Cost = 11,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { HeatDmg, 0.9f },
+        },
+    }
+},
+{ "North Wind", new ModData()
+    {
+        Type = "Melee",
+        Cost = 11,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { ColdDmg, 0.9f },
+        },
+    }
+},
+{ "Proton Snap", new ModData()
+    {
+        Type = "Melee",
+        Condition = "Wall Latch", // Assuming Condition is a property of ModData
+        Cost = 9,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { ToxinDmg, 1.0f },
+            { HeatDmg, 0.5f },
+        },
+    }
+},
+{ "Shocking Touch", new ModData()
+    {
+        Type = "Melee",
+        Cost = 11,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { EletricityDmg, 0.9f },
+        },
+    }
+},
+{ "Vicious Frost", new ModData()
+    {
+        Type = "Melee",
+        Cost = 7,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { ColdDmg, 0.6f },
+            { StatusChance, 0.6f },
+        },
+    }
+},
+{ "Virulent Scourge", new ModData()
+    {
+        Type = "Melee",
+        Cost = 7,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { ToxinDmg, 0.6f },
+            { StatusChance, 0.6f },
+        },
+    }
+},
+{ "Volcanic Edge", new ModData()
+    {
+        Type = "Melee",
+        Cost = 7,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { HeatDmg, 0.6f },
+            { StatusChance, 0.6f },
+        },
+    }
+},
+{ "Voltaic Strike", new ModData()
+    {
+        Type = "Melee",
+        Cost = 7,
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { EletricityDmg, 0.6f },
+            { StatusChance, 0.6f },
+        },
+    }
+},
+{ "Sacrificial Pressure", new ModData()
+    {
+        Type = "Melee",
+        Cost = 16,
+        Restriction = "Pressure Point", // Assuming Restriction is a property of ModData
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { BaseDmg, 1.1f },
+            { SentientFactionDmg, 1.3f },
+        },
+    }
+},
+{ "Sacrificial Steel", new ModData()
+    {
+        Type = "Melee",
+        Cost = 16,
+        Restriction = "True Steel",
+        mod_bonus = new Dictionary<string, float>()
+        {
+            { "Critical Chance", 2.2f }, // Note the quotes for clarity
+            { "Critical Chance For Heavy Attack", 4.4f },
+            { SentientFactionDmg, 1.3f },
+        },
+    }
+},
 
-                Cost = 11,
-                mod_bonus= new Dictionary<string, float>(){
-                        {ImpactDmg, 1.2f},
-                    },
-
+            { "", new ModData()
             },
-            new ModData("Primed Heavy Trauma")
-            {
-                Type = "Melee",
 
-                Cost = 12,
-                mod_bonus= new Dictionary<string, float>(){
-                        {ImpactDmg, 1.65f},
-                    },
+        };
 
-            },
-            new ModData("Jagged Edge")
-            {
-                Type = "Melee",
-
-                Cost = 7,
-                mod_bonus= new Dictionary<string, float>(){
-                        {SlashDmg, 0.9f},
-                    },
-
-            },
-            new ModData("Jugulus Barbs")
-            {
-                Type = "Melee",
-
-                Cost = 9,
-                mod_bonus= new Dictionary<string, float>(){
-                        {PunctureDmg, 0.9f},
-                        {StatusChance,0.6f},
-                    },
-
-            },
-            new ModData("Rending Strike")
-            {
-                Type = "Melee",
-
-                Cost = 9,
-                mod_bonus= new Dictionary<string, float>(){
-                        {SlashDmg, 0.6f},
-                        {PunctureDmg, 0.8f},
-                    },
-
-            },
-            new ModData("Saxum Thorax")
-            {
-                Type = "Melee",
-
-                Cost = 9,
-
-                mod_bonus= new Dictionary<string, float>(){
-                        {ImpactDmg, 0.9f},
-                        {StatusChance,0.6f},
-                    },
-            },
-            new ModData("Sundering Strike")
-            {
-                Type = "Melee",
-
-                Cost = 7,
-                mod_bonus= new Dictionary<string, float>(){
-                        {PunctureDmg, 0.9f},
-                    },
-
-            },
-            new ModData("Primed Fever Strike")
-            {
-                Type = "Melee",
-                Cost = 16,
-                mod_bonus= new Dictionary<string, float>(){
-                        {ToxinDmg, 1.65f},
-                    },
-
-            },
-            new ModData("Focus Energy")
-            {
-                Type = "Melee",
-
-                Cost = 9,
-                mod_bonus= new Dictionary<string, float>(){
-                        {EletricityDmg, 0.6f},
-                        {HeavyEfficiency, 0.4f},
-                    },
-
-            },
-            new ModData("Molten Impact")
-            {
-                Type = "Melee",
-
-                Cost = 11,
-                mod_bonus= new Dictionary<string, float>(){
-                        {HeatDmg, 0.9f},
-                    },
-
-            },
-            new ModData("North Wind")
-            {
-                Type = "Melee",
-
-                Cost = 11,
-                mod_bonus= new Dictionary<string, float>(){
-                        {ColdDmg, 0.9f},
-                    },
-
-            },
-            new ModData("Proton Snap")
-            {
-                Type = "Melee",
-                Condition="Wall Latch",
-                Cost = 9,
-                mod_bonus= new Dictionary<string, float>(){
-                        {ToxinDmg,1.0f},
-                        {HeatDmg,0.5f},
-
-                    },
-
-            },
-            new ModData("Shocking Touch")
-            {
-                Type = "Melee",
-
-                Cost = 11,
-                mod_bonus= new Dictionary<string, float>(){
-                        {EletricityDmg, 0.9f},
-                    },
-            },
-            new ModData("Vicious Frost")
-            {
-                Type = "Melee",
-
-                Cost = 7,
-                mod_bonus= new Dictionary<string, float>(){
-                        {ColdDmg, 0.6f},
-                        {StatusChance,0.6f},
-                    },
-
-
-            },
-            new ModData("Virulent Scourge")
-            {
-                Type = "Melee",
-
-                Cost = 7,
-                mod_bonus= new Dictionary<string, float>(){
-                        {ToxinDmg, 0.6f},
-                        {StatusChance,0.6f},
-                    },
-
-
-            },
-            new ModData("Volcanic Edge")
-            {
-                Type = "Melee",
-
-                Cost = 7,
-                mod_bonus= new Dictionary<string, float>(){
-                        {HeatDmg, 0.6f},
-                        {StatusChance,0.6f},
-                    },
-
-            },
-            new ModData("Voltaic Strike")
-            {
-                Type = "Melee",
-
-                Cost = 7,
-                mod_bonus= new Dictionary<string, float>(){
-                        {EletricityDmg, 0.6f},
-                        {StatusChance,0.6f},
-                    },
-
-            },
-            new ModData("Sacrificial Pressure")
-            {
-                Type = "Melee",
-                Cost = 16,
-                Restriction="Pressure Point",
-                mod_bonus= new Dictionary<string, float>(){
-                        {BaseDmg, 1.1f},
-                        {SentientFactionDmg,1.3f},
-                    },
-
-            },
-            new ModData("Sacrificial Steel")
-            {
-                Type = "Melee",
-                Cost = 16,
-                Restriction="True Steel",
-                mod_bonus= new Dictionary<string, float>(){
-                        {"Critical Chance", 2.2f},
-                        {"Critical Chance For Heavy Attack", 4.4f},
-                        {SentientFactionDmg,1.3f},
-                    },
-
-            },
-
-
-        ];
         // You can define constants of various data types here
     }
 

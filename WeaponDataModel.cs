@@ -4,20 +4,18 @@ public class WeaponDataModel
 {
     //Display vars
     public string Name, Category, Series, Type, SubType = "";
-
-    public Dictionary<string, string> Components;
-    public string[] IsComponentFor { get; set; }
+    public Dictionary<string, string> Components = new Dictionary<string, string>();
+    public string[] IsComponentFor = new string[3];
     public int MasteryRankRequirement { get; set; }
     public float RivenDisposition { get; set; }
     public string ReleaseDate { get; set; }
 
-    //Pratical vars
+
+    public Dictionary<string, float> DamageTypes = new Dictionary<string, float>();
     public float AtkSpeed, Reach = 1;
-    public Dictionary<string, float> DamageTypes;
     public float CritChance, CritMultiplier, CritTier, StatusChance = 0;
     public float StatusDuration = 6;
 
-    //Advanced vars
 
 
 
@@ -26,8 +24,32 @@ public class WeaponDataModel
     {
 
     }
+    public WeaponDataModel(WeaponDataModel instance)
+    {
+        Name = instance.Name;
+        Category = instance.Category;
+        Series = instance.Series;
+        Type = instance.Type;
+        SubType = instance.SubType;
 
-    public float BaseDamage()
+        MasteryRankRequirement = instance.MasteryRankRequirement;
+        RivenDisposition = instance.RivenDisposition;
+        ReleaseDate = instance.ReleaseDate;
+        Components = new Dictionary<string, string>(instance.Components); // Create a copy of the dictionary
+        IsComponentFor = instance.IsComponentFor.ToArray(); // Create a new array from the existing array
+
+        DamageTypes = new Dictionary<string, float>(instance.DamageTypes); // Create a copy of the dictionary
+        AtkSpeed = instance.AtkSpeed;
+        Reach = instance.Reach;
+        CritChance = instance.CritChance;
+        CritMultiplier = instance.CritMultiplier;
+        CritTier = instance.CritTier;
+        StatusChance = instance.StatusChance;
+        StatusDuration = instance.StatusDuration;
+
+    }
+
+    public float GetBaseDamage()
     {
         float totalDamage = DamageTypes.Sum(x => x.Value);
         if (CritChance > 100)
@@ -44,9 +66,9 @@ public class WeaponDataModel
 
     }
 
-    public float QuantumBaseDmg(EnemyData enemy)
+    public float GetQuantumBaseDmg(EnemyData enemy)
     {
-        float Quantum = BaseDamage() / 16; //15.625
+        float Quantum = GetBaseDamage() / 16; //15.625
         float total_true_dmg = 0;
 
 

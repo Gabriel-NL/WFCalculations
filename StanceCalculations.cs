@@ -65,7 +65,7 @@ namespace WFCalculations
             foreach (StanceHit hit in combo)
             {
 
-                total_dmg += hit.GetMultiplier() * weapon.QuantumBaseDmg(target);
+                total_dmg += hit.GetMultiplier() * weapon.GetQuantumBaseDmg(target);
             }
             return total_dmg;
         }

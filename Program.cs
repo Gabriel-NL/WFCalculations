@@ -23,7 +23,7 @@
             {
                 WeaponDataModel weapon = new ZawBuildClass(combination.strike, combination.grip, combination.link).built_weapon;
 
-                if ((weapon.BaseDamage() > BestZaw.BaseDamage()) || (BestZaw.BaseDamage() == 0))
+                if ((weapon.GetBaseDamage() > BestZaw.GetBaseDamage()) || (BestZaw.GetBaseDamage() == 0))
                 {
                     if (weapon.Type == "Dagger")
                     {
@@ -41,7 +41,20 @@
 
             };
             EnemyData enemy = DummyEnemyTest.ENEMIES["Charger"];
-            Console.WriteLine($"Base dmg: {weaponTest.BaseDamage()} Quantum dmg: {weaponTest.QuantumBaseDmg(enemy)}");
+            Console.WriteLine($"Base dmg: {weaponTest.GetBaseDamage()} Quantum dmg: {weaponTest.GetQuantumBaseDmg(enemy)}");
+
+            WeaponDataModel clone = new WeaponDataModel(weaponTest);
+            ModInteraction mod = new ModInteraction(clone);
+            mod.modSlots.Add(ModList.MOD_DICTIONARY["Buzz Kill"]);
+            mod.modSlots.Add(ModList.MOD_DICTIONARY["Spoiled Strike"]);
+            mod.modSlots.Add(ModList.MOD_DICTIONARY["Molten Impact"]);
+            mod.ApplyChanges();
+            mod.ShowAllChanges();
+            Console.WriteLine($"Clone Base dmg: {clone.GetBaseDamage()} Clone Quantum dmg: {clone.GetQuantumBaseDmg(enemy)}");
+
+
+            //
+
 
             //ShowStats(BestZaw);
             //StanceCalculations stanceData = new StanceCalculations(BestZaw.Type, BestZaw.BaseDamage());
@@ -57,7 +70,7 @@
             {
                 Console.Write($"/{pair.Key}:{pair.Value}/");
             }
-            Console.WriteLine($"Base dmg per hit={weapon.BaseDamage()}");
+            Console.WriteLine($"Base dmg per hit={weapon.GetBaseDamage()}");
             Console.WriteLine($"Crit dmg=");
             Console.WriteLine(Constants.SEPARATOR);
         }
@@ -81,7 +94,7 @@
             {
                 Console.Write($"/{pair.Key}={Math.Round(pair.Value, 1)}/");
             }
-            Console.WriteLine($"Base dmg={weapon.BaseDamage()}");
+            Console.WriteLine($"Base dmg={weapon.GetBaseDamage()}");
             Console.WriteLine(Constants.SEPARATOR);
 
         }
