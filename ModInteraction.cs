@@ -66,26 +66,25 @@ namespace WFCalculations
         {
 
             SumAllBonus();
-            foreach (var change in allChanges)
+
+            if (allChanges.ContainsKey(ModList.BaseDmg))
             {
-                if (change.Key == ModList.BaseDmg)
+                float DmgMultiplier = 1 + allChanges[ModList.BaseDmg];
+
+                foreach (var dmg_type in weapon.DamageTypes)
                 {
-                    float DmgMultiplier = 1 + change.Value;
-                    foreach (var dmg_type in weapon.DamageTypes)
-                    {
-                        weapon.DamageTypes[dmg_type.Key] *= DmgMultiplier;
-                    }
+                    weapon.DamageTypes[dmg_type.Key] *= DmgMultiplier;
                 }
+            }
 
-                if (change.Key == ModList.HeatDmg
-                || change.Key == ModList.ColdDmg
-                || change.Key == ModList.EletricityDmg
-                || change.Key == ModList.ToxinDmg)
+            Dictionary<string, float> newElements = new Dictionary<string, float>();
+            foreach (var alteration in allChanges)
+            {
+                if (ModList.elementalMods.Contains(alteration.Key))
                 {
-
+                    float newDamage = alteration.Value * weapon.GetBaseDamage();
+                    newElements.Add(alteration.Key, newDamage);
                 }
-
-
             }
 
 

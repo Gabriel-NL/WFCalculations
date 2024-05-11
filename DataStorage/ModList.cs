@@ -3,15 +3,36 @@ namespace WFCalculations
 
     public static class ModList
     {
+
         public static readonly string BaseDmg = "Base Damage";
         public static readonly string BaseDmgPS = "Base Damage Per Status";
         public static readonly string ImpactDmg = "Impact Damage";
         public static readonly string PunctureDmg = "Puncture Damage";
         public static readonly string SlashDmg = "Slash Damage";
+
         public static readonly string ToxinDmg = "Toxin Damage";
         public static readonly string EletricityDmg = "Eletricity Damage";
         public static readonly string ColdDmg = "Cold Damage";
         public static readonly string HeatDmg = "Heat Damage";
+        public static readonly string CorrosiveDmg = "Corrosive Damage";
+        public static readonly string ViralDmg = "Viral Damage";
+        public static readonly string GasDmg = "Gas Damage";
+        public static readonly string MagneticDmg = "Magnetic Damage";
+        public static readonly string RadiationDmg = "Radiation Damage";
+        public static readonly string BlastDmg = "Blast Damage";
+        public static readonly string[] elementalMods = new string[]{
+                ModList.ToxinDmg,
+                ModList.EletricityDmg,
+                ModList.HeatDmg,
+                ModList.ColdDmg,
+                ModList.CorrosiveDmg,
+                ModList.GasDmg,
+                ModList.ViralDmg,
+                ModList.RadiationDmg,
+                ModList.MagneticDmg,
+                ModList.BlastDmg
+            };
+
         public static readonly string AttackSpeed = "Attack Speed";
         public static readonly string StatusChance = "Status Chance";
         public static readonly string AdditiveStatusChance = "Additive Status Chance";
