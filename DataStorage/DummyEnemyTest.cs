@@ -1,5 +1,25 @@
 namespace WFCalculations
 {
+    public struct EnemyData
+    {
+
+        public string faction;
+        public HealthType health_type;
+
+        public EnemyData(string faction, HealthType health_type)
+        {
+
+            this.faction = faction;
+            this.health_type = health_type;
+        }
+
+    }
+
+    public struct HealthType
+    {
+        public Dictionary<string, float> DmgMultipliers;
+        public HealthType() { }
+    }
     public static class DummyEnemyTest
     {
         public static readonly Dictionary<string, HealthType> HEALTH_TYPES = new Dictionary<string, HealthType>()

@@ -12,6 +12,40 @@
         {
             Console.Clear();
 
+            //WeaponDataModel BestZaw = ShowBestZaw();
+
+            WeaponDataModel weaponTest = new WeaponDataModel();
+            weaponTest.DamageTypes = new Dictionary<string, float>
+            {
+                {ModList.ImpactDmg, 55},
+                {ModList.PunctureDmg, 80},
+                {ModList.SlashDmg, 115},
+            };
+            EnemyData enemy = DummyEnemyTest.ENEMIES["Charger"];
+
+
+            WeaponDataModel clone = new WeaponDataModel(weaponTest);
+            ModInteraction mod = new ModInteraction(clone);
+            mod.modSlots.Add(ModList.MOD_DICTIONARY["Buzz Kill"]);
+            mod.modSlots.Add(ModList.MOD_DICTIONARY["Spoiled Strike"]);
+            mod.modSlots.Add(ModList.MOD_DICTIONARY["Molten Impact"]);
+            mod.ApplyChanges();
+            mod.ShowAllChanges();
+            clone.GetAllDamages();
+            Console.WriteLine($"Clone Base dmg: {clone.GetBaseDamage()} Clone Quantum dmg: {clone.GetQuantumBaseDmg(enemy)}");
+
+
+
+            //ShowStats(BestZaw);
+            //StanceCalculations stanceData = new StanceCalculations(BestZaw.Type, BestZaw.BaseDamage());
+            //stanceData.CalculateStanceData(BestZaw.BaseDamage());
+
+
+
+        }
+
+        public static WeaponDataModel ShowBestZaw()
+        {
             WeaponDataModel BestZaw = new ZawBuildClass("Sample", "Sample", "Sample").built_weapon;
 
             var combinations = from strike in Constants.ALLZAWSTRIKES
@@ -25,46 +59,12 @@
 
                 if ((weapon.GetBaseDamage() > BestZaw.GetBaseDamage()) || (BestZaw.GetBaseDamage() == 0))
                 {
-                    if (weapon.Type == "Dagger")
-                    {
-                        BestZaw = weapon;
-
-                    }
+                    if (weapon.Type == "Dagger") { BestZaw = weapon; }
                 }
             }
-            WeaponDataModel weaponTest = new WeaponDataModel();
-            weaponTest.DamageTypes = new Dictionary<string, float>
-            {
-                {ModList.ImpactDmg, 55},
-                {ModList.PunctureDmg, 80},
-                {ModList.SlashDmg, 115},
-
-            };
-            EnemyData enemy = DummyEnemyTest.ENEMIES["Charger"];
-            weaponTest.GetAllDamages();
-            Console.WriteLine($"Base dmg: {weaponTest.GetBaseDamage()} Quantum dmg: {weaponTest.GetQuantumBaseDmg(enemy)}");
-
-            WeaponDataModel clone = new WeaponDataModel(weaponTest);
-            ModInteraction mod = new ModInteraction(clone);
-            mod.modSlots.Add(ModList.MOD_DICTIONARY["Buzz Kill"]);
-            mod.modSlots.Add(ModList.MOD_DICTIONARY["Spoiled Strike"]);
-            mod.modSlots.Add(ModList.MOD_DICTIONARY["Molten Impact"]);
-            mod.ApplyChanges();
-            mod.ShowAllChanges();
-            clone.GetAllDamages();
-            Console.WriteLine($"Clone Base dmg: {clone.GetBaseDamage()} Clone Quantum dmg: {clone.GetQuantumBaseDmg(enemy)}");
-
-
-            //
-
-
-            //ShowStats(BestZaw);
-            //StanceCalculations stanceData = new StanceCalculations(BestZaw.Type, BestZaw.BaseDamage());
-            //stanceData.CalculateStanceData(BestZaw.BaseDamage());
-
-
-
+            return BestZaw;
         }
+
         public void ShowAdvancedStats(WeaponDataModel weapon)
         {
             Console.WriteLine(Constants.SEPARATOR);

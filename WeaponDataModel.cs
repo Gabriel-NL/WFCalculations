@@ -9,12 +9,15 @@ public class WeaponDataModel
     public int MasteryRankRequirement { get; set; }
     public float RivenDisposition { get; set; }
     public string ReleaseDate { get; set; }
-
-
     public Dictionary<string, float> DamageTypes = new Dictionary<string, float>();
-    public float AtkSpeed, Reach = 1;
     public float CritChance, CritMultiplier, CritTier, StatusChance = 0;
     public float StatusDuration = 6;
+
+    //Melee
+    public float AtkSpeed, Reach = 1;
+    //Gun
+    public float ProjectileSpeed, FireRate, Multishot, Accuracy, AmmoMax, MagazineSize, ReloadSpeed = 1;
+
 
 
 

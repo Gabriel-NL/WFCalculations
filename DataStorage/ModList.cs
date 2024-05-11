@@ -1,6 +1,19 @@
 namespace WFCalculations
 {
 
+    public struct ModData
+    {
+        public string Name { get; set; } //Example: Covert Letality
+        public string Type { get; set; } //Example: Melee
+        public string SubType = "None"; //Example: Daggers
+        public string Class { get; set; } //Example: Rare
+        public string Polarity { get; set; } //Example: Madurai
+        public int Cost { get; set; } //Example: 13
+        public string Restriction = "None"; //Example: Primed Pressure point
+        public string Condition = "None"; //Example: Wall Latch
+        public Dictionary<string, float> mod_bonus;
+        public ModData() { }
+    }
     public static class ModList
     {
 

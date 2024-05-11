@@ -21,7 +21,9 @@ namespace WFCalculations
             this.grip = grip;
             this.link = link;
             built_weapon = new WeaponDataModel();
-            built_weapon.SubType = "Zaw";
+            built_weapon.Name = $"Zaw {strike}-{grip}-{link}";
+            built_weapon.Category = "Melee";
+            built_weapon.Series = "Zaw";
             built_weapon.Components = new Dictionary<string, string>()
             {
                 { "Strike", strike },

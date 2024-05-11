@@ -4,7 +4,7 @@ namespace WFCalculations
 {
     public class StanceCalculations
     {
-        public Stance[] stances;
+        public Dictionary<string, Stance> stances;
         public WeaponDataModel weapon;
         public EnemyData target;
 
@@ -16,46 +16,51 @@ namespace WFCalculations
         }
 
 
-        public void ShowAllStanceData(Stance[] stances)
+        public void ShowAllStanceData(Dictionary<string, Stance> stances)
         {
             Console.WriteLine($"The damage values for {weapon.Type} are:");
 
             Console.WriteLine(Constants.SEPARATOR);
-
-            foreach (Stance stance in stances)
+            foreach (var currentStance in stances)
             {
-                foreach (Combo combo in stance.AllCombos)
+                foreach (var currentCombo in currentStance.Value.ComboDictionary)
                 {
-                    Console.WriteLine($"Stance: {stance.StanceName}, Combo: {combo.ComboName}");
-                    Console.WriteLine($"Combo damage: {CalculateDmg(combo.AllHits)} hit count: {combo.AllHits.Length} combo duration: {combo.ComboDuration}");
+                    Console.WriteLine($"Stance: {currentStance.Key}, Combo: {currentCombo.Key}");
+                    Console.WriteLine($"Combo damage: {CalculateDmg(currentCombo.Value.AllHits)} hit count: {currentCombo.Value.AllHits.Length} combo duration: {currentCombo.Value.ComboDuration}");
                     Console.WriteLine(Constants.SEPARATOR);
                 }
             }
 
+
             //Console.WriteLine($"Neutral combo causes {CalculateDmg(stance.neutralCombo)} damage with {stance.neutralCombo.Length} hits");
         }
 
-        public void ShowStrongestStanceForWeapon(Stance[] stances)
+        public void ShowStrongestStanceForWeapon(Dictionary<string, Stance> weapon_stances)
         {
             Console.WriteLine($"The best combo for {weapon.Type} is:");
             Console.WriteLine(Constants.SEPARATOR);
 
-            Combo bestCombo = new Combo();
-            String bestStanceName = "";
-            foreach (Stance stance in stances)
-            {
-                foreach (Combo combo in stance.AllCombos)
-                {
+            string bestComboName = "";
+            string bestStanceName = "";
+            double bestTotalDmg = 0f;
+            Combo bestCombo = weapon_stances[bestStanceName].ComboDictionary[bestComboName];
 
-                    if (bestCombo.ComboName == null || (CalculateDmg(combo.AllHits)) > (CalculateDmg(bestCombo.AllHits)))
+
+            foreach (var currentStance in weapon_stances)
+            {
+                foreach (var currentCombo in currentStance.Value.ComboDictionary)
+                {
+                    if (bestCombo.AllHits == null || CalculateDmg(currentCombo.Value.AllHits) > CalculateDmg(bestCombo.AllHits))
                     {
-                        bestCombo = combo;
-                        bestStanceName = stance.StanceName;
+                        bestComboName = currentCombo.Key;
+                        bestStanceName = currentStance.Key;
+                        bestTotalDmg = CalculateDmg(currentCombo.Value.AllHits);
                     }
                 }
             }
-            Console.WriteLine($"The {bestCombo.ComboName} from {bestStanceName} has the most damage");
-            Console.WriteLine($"TotalDmg: {CalculateDmg(bestCombo.AllHits)}");
+
+            Console.WriteLine($"The {bestComboName} from {bestStanceName} has the most damage");
+            Console.WriteLine($"TotalDmg: {bestTotalDmg}");
 
         }
 
@@ -70,7 +75,10 @@ namespace WFCalculations
             return total_dmg;
         }
 
+        public void CalculateAverageDPS()
+        {
 
+        }
 
         public void CalculateStanceData(double base_dmg)
         {
@@ -78,15 +86,15 @@ namespace WFCalculations
             {
                 case "Dagger":
 
-                    stances = StanceList.DAGGERSTANCES;
+                    stances = StanceList.DAGGER_STANCE_DICTIONARY;
                     //ShowAllStanceData(stances);
                     ShowStrongestStanceForWeapon(stances);
                     break;
 
                 case "Staff":
 
-                    stances = StanceList.STAFFSTANCES;
-
+                    stances = StanceList.STAFF_STANCE_DICTIONARY;
+                    ShowStrongestStanceForWeapon(stances);
                     break;
                 case "Machete":
                     break;
