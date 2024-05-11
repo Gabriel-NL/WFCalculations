@@ -35,12 +35,13 @@
             WeaponDataModel weaponTest = new WeaponDataModel();
             weaponTest.DamageTypes = new Dictionary<string, float>
             {
-                {Constants.IMPACT, 55},
-                {Constants.PUNCTURE, 80},
-                {Constants.SLASH, 115},
+                {ModList.ImpactDmg, 55},
+                {ModList.PunctureDmg, 80},
+                {ModList.SlashDmg, 115},
 
             };
             EnemyData enemy = DummyEnemyTest.ENEMIES["Charger"];
+            weaponTest.GetAllDamages();
             Console.WriteLine($"Base dmg: {weaponTest.GetBaseDamage()} Quantum dmg: {weaponTest.GetQuantumBaseDmg(enemy)}");
 
             WeaponDataModel clone = new WeaponDataModel(weaponTest);
@@ -50,6 +51,7 @@
             mod.modSlots.Add(ModList.MOD_DICTIONARY["Molten Impact"]);
             mod.ApplyChanges();
             mod.ShowAllChanges();
+            clone.GetAllDamages();
             Console.WriteLine($"Clone Base dmg: {clone.GetBaseDamage()} Clone Quantum dmg: {clone.GetQuantumBaseDmg(enemy)}");
 
 

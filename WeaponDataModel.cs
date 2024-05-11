@@ -66,6 +66,14 @@ public class WeaponDataModel
 
     }
 
+    public void GetAllDamages()
+    {
+        foreach (var dmg_type in DamageTypes)
+        {
+            Console.WriteLine($"{dmg_type.Key} = {dmg_type.Value}");
+        }
+    }
+
     public float GetQuantumBaseDmg(EnemyData enemy)
     {
         float Quantum = GetBaseDamage() / 16; //15.625

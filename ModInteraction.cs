@@ -85,7 +85,25 @@ namespace WFCalculations
                     float newDamage = alteration.Value * weapon.GetBaseDamage();
                     newElements.Add(alteration.Key, newDamage);
                 }
+                if (ModList.physicalMods.Contains(alteration.Key) && weapon.DamageTypes.ContainsKey(alteration.Key))
+                {
+                    float newDamage = weapon.DamageTypes[alteration.Key] * (alteration.Value + 1);
+                    newElements.Add(alteration.Key, newDamage);
+                }
             }
+            foreach (var element in newElements)
+            {
+                if (weapon.DamageTypes.ContainsKey(element.Key))
+                {
+
+                    weapon.DamageTypes[element.Key] += element.Value;
+                }
+                else
+                {
+                    weapon.DamageTypes.Add(element.Key, element.Value);
+                }
+            }
+
 
 
 

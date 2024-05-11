@@ -8,11 +8,11 @@ namespace WFCalculations
                 {
                 DmgMultipliers=new Dictionary<string, float>
                     {
-                    {Constants.IMPACT, 0.75f},
-                    {Constants.SLASH, 1.25f},
-                    {Constants.HEAT, 1.25f},
-                    {Constants.GAS, 0.5f},
-                    {Constants.VIRAL, 1.75f}
+                    {ModList.ImpactDmg, 0.75f},
+                    {ModList.SlashDmg, 1.25f},
+                    {ModList.HeatDmg, 1.25f},
+                    {ModList.GasDmg, 0.5f},
+                    {ModList.ViralDmg, 1.75f}
                     }
                 }
             },
@@ -20,11 +20,11 @@ namespace WFCalculations
                 {
                 DmgMultipliers=new Dictionary<string, float>
                     {
-                    {Constants.IMPACT, 1.25f},
-                    {Constants.ELETRICITY, 1.5f},
-                    {Constants.TOXIN, 0.75f},
-                    {Constants.BLAST, 1.75f},
-                    {Constants.VIRAL, 0.75f}
+                    {ModList.ImpactDmg, 1.25f},
+                    {ModList.EletricityDmg, 1.5f},
+                    {ModList.ToxinDmg, 0.75f},
+                    {ModList.BlastDmg, 1.75f},
+                    {ModList.ViralDmg, 0.75f}
                     }
                 }
             },
@@ -32,11 +32,11 @@ namespace WFCalculations
                 {
                 DmgMultipliers=new Dictionary<string, float>
                     {
-                    {Constants.IMPACT, 0.75f},
-                    {Constants.SLASH, 1.25f},
-                    {Constants.TOXIN, 1.5f},
-                    {Constants.GAS, 0.75f},
-                    {Constants.VIRAL, 1.5f}
+                    {ModList.ImpactDmg, 0.75f},
+                    {ModList.SlashDmg, 1.25f},
+                    {ModList.ToxinDmg, 1.5f},
+                    {ModList.GasDmg, 0.75f},
+                    {ModList.ViralDmg, 1.5f}
                     }
                 }
             },
@@ -44,11 +44,11 @@ namespace WFCalculations
                 {
                 DmgMultipliers=new Dictionary<string, float>
                     {
-                    {Constants.PUNCTURE,  1.25f},
-                    {Constants.SLASH, 0.75f},
-                    {Constants.ELETRICITY, 1.5f},
-                    {Constants.TOXIN, 0.75f},
-                    {Constants.RADIATION, 1.25f}
+                    {ModList.PunctureDmg,  1.25f},
+                    {ModList.SlashDmg, 0.75f},
+                    {ModList.EletricityDmg, 1.5f},
+                    {ModList.ToxinDmg, 0.75f},
+                    {ModList.RadiationDmg, 1.25f}
                     }
                 }
             },
@@ -56,11 +56,11 @@ namespace WFCalculations
                 {
                 DmgMultipliers=new Dictionary<string, float>
                     {
-                    {Constants.SLASH, 1.25f},
-                    {Constants.HEAT, 1.25f},
-                    {Constants.GAS, 1.75f},
-                    {Constants.RADIATION, 0.5f},
-                    {Constants.VIRAL, 0.5f}
+                    {ModList.SlashDmg, 1.25f},
+                    {ModList.HeatDmg, 1.25f},
+                    {ModList.GasDmg, 1.75f},
+                    {ModList.RadiationDmg, 0.5f},
+                    {ModList.ViralDmg, 0.5f}
                     }
                 }
             },
@@ -68,10 +68,10 @@ namespace WFCalculations
                 {
                 DmgMultipliers=new Dictionary<string, float>
                     {
-                    {Constants.SLASH, 1.5f},
-                    {Constants.COLD, 0.5f},
-                    {Constants.HEAT, 1.5f},
-                    {Constants.GAS, 1.5f},
+                    {ModList.SlashDmg, 1.5f},
+                    {ModList.ColdDmg, 0.5f},
+                    {ModList.HeatDmg, 1.5f},
+                    {ModList.GasDmg, 1.5f},
                     }
                 }
             },
@@ -79,12 +79,12 @@ namespace WFCalculations
                 {
                 DmgMultipliers=new Dictionary<string, float>
                     {
-                    {Constants.SLASH, 1.15f},
-                    {Constants.COLD , 0.75f},
-                    {Constants.TOXIN, 0.5f},
-                    {Constants.BLAST, 1.5f},
-                    {Constants.CORROSIVE, 1.75f},
-                    {Constants.RADIATION, 0.25f}
+                    {ModList.SlashDmg, 1.15f},
+                    {ModList.ColdDmg , 0.75f},
+                    {ModList.ToxinDmg, 0.5f},
+                    {ModList.BlastDmg, 1.5f},
+                    {ModList.CorrosiveDmg, 1.75f},
+                    {ModList.RadiationDmg, 0.25f}
                     }
                 }
             },
@@ -92,11 +92,11 @@ namespace WFCalculations
                 {
                 DmgMultipliers=new Dictionary<string, float>
                     {
-                    {Constants.PUNCTURE, 1.25f},
-                    {Constants.SLASH, 0.5f},
-                    {Constants.ELETRICITY, 1.25f},
-                    {Constants.RADIATION, 1.75f},
-                    {Constants.VIRAL, 0.5f},
+                    {ModList.PunctureDmg, 1.25f},
+                    {ModList.SlashDmg, 0.5f},
+                    {ModList.EletricityDmg, 1.25f},
+                    {ModList.RadiationDmg, 1.75f},
+                    {ModList.ViralDmg, 0.5f},
                     {Constants.VOID, 1.25f},
                     }
                 }

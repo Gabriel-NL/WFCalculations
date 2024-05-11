@@ -9,7 +9,8 @@ namespace WFCalculations
         public static readonly string ImpactDmg = "Impact Damage";
         public static readonly string PunctureDmg = "Puncture Damage";
         public static readonly string SlashDmg = "Slash Damage";
-
+        public static readonly string[] physicalMods = new string[]{
+            ImpactDmg,PunctureDmg,SlashDmg};
         public static readonly string ToxinDmg = "Toxin Damage";
         public static readonly string EletricityDmg = "Eletricity Damage";
         public static readonly string ColdDmg = "Cold Damage";
@@ -21,16 +22,11 @@ namespace WFCalculations
         public static readonly string RadiationDmg = "Radiation Damage";
         public static readonly string BlastDmg = "Blast Damage";
         public static readonly string[] elementalMods = new string[]{
-                ModList.ToxinDmg,
-                ModList.EletricityDmg,
-                ModList.HeatDmg,
-                ModList.ColdDmg,
-                ModList.CorrosiveDmg,
-                ModList.GasDmg,
-                ModList.ViralDmg,
-                ModList.RadiationDmg,
-                ModList.MagneticDmg,
-                ModList.BlastDmg
+                ModList.ToxinDmg, ModList.EletricityDmg,
+                ModList.HeatDmg, ModList.ColdDmg,
+                ModList.CorrosiveDmg, ModList.GasDmg,
+                ModList.ViralDmg, ModList.RadiationDmg,
+                ModList.MagneticDmg, ModList.BlastDmg
             };
 
         public static readonly string AttackSpeed = "Attack Speed";
