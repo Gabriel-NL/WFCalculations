@@ -12,15 +12,10 @@
         {
             Console.Clear();
 
-            //WeaponDataModel BestZaw = ShowBestZaw();
+            
 
             WeaponDataModel weaponTest = new WeaponDataModel();
-            weaponTest.DamageTypes = new Dictionary<string, float>
-            {
-                {ModList.ImpactDmg, 55},
-                {ModList.PunctureDmg, 80},
-                {ModList.SlashDmg, 115},
-            };
+            
             EnemyData enemy = DummyEnemyTest.ENEMIES["Charger"];
 
 
