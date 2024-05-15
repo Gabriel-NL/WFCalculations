@@ -18,6 +18,7 @@ namespace WFCalculations
     public static class ModList
     {
         public static readonly string BaseDmg = "Base Damage";
+        public static readonly string BaseDmgOnFirstShot = "Base Damage On First Shot";
         public static readonly string BaseDmgPS = "Base Damage Per Status";
         public static readonly string ImpactDmg = "Impact Damage";
         public static readonly string PunctureDmg = "Puncture Damage";
@@ -38,6 +39,7 @@ namespace WFCalculations
         public static readonly string MagneticDmg = "Magnetic Damage";
         public static readonly string RadiationDmg = "Radiation Damage";
         public static readonly string BlastDmg = "Blast Damage";
+        public static readonly string HSMulti= "Headshot Multiplyer";
         public static readonly string[] elementalMods = new string[]
         {
             ModList.ToxinDmg,
@@ -57,6 +59,11 @@ namespace WFCalculations
         public static readonly string AdditiveStatusChance = "Additive Status Chance";
         public static readonly string HeavyEfficiency = "Heavy Efficiency";
         public static readonly string SentientFactionDmg = "Sentient Faction Dmg";
+
+        public static readonly string ReloadSpeed = "Reload Speed";
+        public static readonly string MagazineCapacity = "Magazine Capacity";
+        public static readonly string ComboDuration = "Combo Duration";
+        
 
         public static readonly Dictionary<string, ModData> MOD_DICTIONARY = new Dictionary<
             string,
@@ -341,6 +348,75 @@ namespace WFCalculations
                         { "Critical Chance", 2.2f }, // Note the quotes for clarity
                         { "Critical Chance For Heavy Attack", 4.4f },
                         { SentientFactionDmg, 1.3f },
+                    },
+                }
+            },
+            {
+                "Charged Chamber",
+                new ModData()
+                {
+                    Type = "Sniper",
+                    Cost = 9,
+                    Restriction = "Primed Chamber", // Assuming Restriction is a property of ModData
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { BaseDmgOnFirstShot, 0.4f },
+
+                    },
+                }
+            },
+            {
+                "Primed Chamber",
+                new ModData()
+                {
+                    Type = "Sniper",
+                    Cost = 7,
+                    Restriction = "Charged Chamber", // Assuming Restriction is a property of ModData
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { BaseDmgOnFirstShot, 0.4f },
+
+                    },
+                }
+            },
+            {
+                "Depleted Reload",
+                new ModData()
+                {
+                    Type = "Sniper",
+                    Cost = 7,
+                    Restriction = "None", // Assuming Restriction is a property of ModData
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { ReloadSpeed, 0.48f },
+                        { MagazineCapacity, -0.6f },
+                    },
+                }
+            },
+            {
+                "Harkonar Scope",
+                new ModData()
+                {
+                    Type = "Sniper",
+                    Cost = 9,
+                    Condition = "Aiming",
+                    Restriction = "None", // Assuming Restriction is a property of ModData
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { ComboDuration, 12f },
+                    },
+                }
+            },
+            {
+                "Target Acquired",
+                new ModData()
+                {
+                    Type = "Sniper",
+                    Cost = 11,
+                    
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { HSMulti, 0.6f },
                     },
                 }
             },

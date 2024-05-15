@@ -2,14 +2,14 @@ using Microsoft.VisualBasic;
 
 namespace WFCalculations
 {
-    public class StanceCalculations
+    public class WeaponCalculations
     {
         public Dictionary<string, Stance> stances;
         public WeaponDataModel weapon;
         public EnemyData target;
 
 
-        public StanceCalculations(WeaponDataModel weapon, EnemyData target)
+        public WeaponCalculations(WeaponDataModel weapon, EnemyData target)
         {
             this.weapon = weapon;
             this.target = target;
