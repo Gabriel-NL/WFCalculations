@@ -6,10 +6,10 @@ namespace WFCalculations
     {
         public Dictionary<string, Stance> stances;
         public WeaponDataModel weapon;
-        public EnemyData target;
+        public FactionWeakness target;
 
 
-        public WeaponCalculations(WeaponDataModel weapon, EnemyData target)
+        public WeaponCalculations(WeaponDataModel weapon, FactionWeakness target)
         {
             this.weapon = weapon;
             this.target = target;

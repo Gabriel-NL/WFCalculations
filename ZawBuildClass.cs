@@ -133,9 +133,9 @@ namespace WFCalculations
                         dmg_bonus_multiplier = 1;
                     }
 
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 11.2f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 134.4f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 78.4f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 11.2f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 134.4f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 78.4f);
                     weapon.AtkSpeed += 0.083f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -155,9 +155,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.08f;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 46f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 11.5f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 172.5f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 46f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 11.5f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 172.5f);
                     weapon.AtkSpeed += 0.0f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -177,9 +177,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.09f;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 22.4f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 112.0f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 89.6f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 22.4f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 112.0f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 89.6f);
                     weapon.AtkSpeed += 0.083f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -199,9 +199,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 0.93f;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 46.4f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 108.1f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 154.5f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 46.4f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 108.1f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 154.5f);
                     weapon.AtkSpeed += 0.083f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -221,8 +221,8 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.07f;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 163.8f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 70.2f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 163.8f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 70.2f);
                     weapon.AtkSpeed -= 0.067f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -242,9 +242,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.09f;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 56.0f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 78.4f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 89.6f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 56.0f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 78.4f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 89.6f);
                     weapon.AtkSpeed -= 0.067f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -264,9 +264,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 22.4f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 89.6f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 112.0f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 22.4f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 89.6f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 112.0f);
                     weapon.AtkSpeed += 0.000f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -286,9 +286,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.08f;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 140.4f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 11.7f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 81.9f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 140.4f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 11.7f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 81.9f);
                     weapon.AtkSpeed -= 0.067f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -308,9 +308,9 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 22.6f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 56.5f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 146.9f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 22.6f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 56.5f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 146.9f);
                     weapon.AtkSpeed += 0.000f;
                     weapon.CritChance = 20;
                     weapon.CritMultiplier = 2;
@@ -330,10 +330,10 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 0.85f;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 88.0f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 57.0f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 91.0f);
-                    weapon.DamageTypes.Add(ModList.ViralDmg, 70.0f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 88.0f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 57.0f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 91.0f);
+                    weapon.DamageTypes.Add(Constants.ViralDmg, 70.0f);
                     weapon.AtkSpeed -= 0.033f;
                     weapon.CritChance = 18;
                     weapon.CritMultiplier = 2;
@@ -353,10 +353,10 @@ namespace WFCalculations
                         weapon.Reach = 3.0f;
                         dmg_bonus_multiplier = 1.08f;
                     }
-                    weapon.DamageTypes.Add(ModList.ImpactDmg, 30.0f);
-                    weapon.DamageTypes.Add(ModList.PunctureDmg, 70.0f);
-                    weapon.DamageTypes.Add(ModList.SlashDmg, 49.0f);
-                    weapon.DamageTypes.Add(ModList.ViralDmg, 64.0f);
+                    weapon.DamageTypes.Add(Constants.ImpactDmg, 30.0f);
+                    weapon.DamageTypes.Add(Constants.PunctureDmg, 70.0f);
+                    weapon.DamageTypes.Add(Constants.SlashDmg, 49.0f);
+                    weapon.DamageTypes.Add(Constants.ViralDmg, 64.0f);
                     weapon.AtkSpeed += 0.033f;
                     weapon.CritChance = 22;
                     weapon.CritMultiplier = 2.2f;

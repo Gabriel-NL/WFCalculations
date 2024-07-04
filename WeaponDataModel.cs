@@ -3,7 +3,7 @@ using WFCalculations;
 public class WeaponDataModel
 {
     //Display vars
-    public string Name, Category, Series, Type, SubType = "";
+    public string Name, Category, Series, Type, SubType ,Trigger= "";
     public Dictionary<string, string> Components = new Dictionary<string, string>();
     public string[] IsComponentFor = new string[3];
     public int MasteryRankRequirement { get; set; }
@@ -77,7 +77,7 @@ public class WeaponDataModel
         }
     }
 
-    public float GetQuantumBaseDmg(EnemyData enemy)
+    public float GetQuantumBaseDmg(FactionWeakness enemy)
     {
         float Quantum = GetBaseDamage() / 16; //15.625
         float total_true_dmg = 0;
@@ -90,10 +90,10 @@ public class WeaponDataModel
             float Quantum_dmg = kvp.Value / Quantum;
             float true_value = (int)Math.Round(Quantum_dmg) * Quantum;
 
-            if (enemy.health_type.DmgMultipliers.ContainsKey(kvp.Key))
+            if (enemy.DmgMultipliers.ContainsKey(kvp.Key))
             {
 
-                float multiplier = enemy.health_type.DmgMultipliers[kvp.Key];
+                float multiplier = enemy.DmgMultipliers[kvp.Key];
                 true_value *= 1.25f;
             }
             total_true_dmg += true_value;

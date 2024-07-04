@@ -14,11 +14,11 @@
 
             
 
-            WeaponDataModel weaponTest = new WeaponDataModel();
+            WeaponDataModel weaponTest = WeaponList.RubicoPrime;
+            ModInteraction modInteraction = new ModInteraction(weaponTest,DummyEnemyTest.grineer);
+            modInteraction.IteratingOverAllMod();
             
-            EnemyData enemy = DummyEnemyTest.ENEMIES["Charger"];
-
-
+            /*
             WeaponDataModel clone = new WeaponDataModel(weaponTest);
             ModInteraction mod = new ModInteraction(clone);
             mod.modSlots.Add(ModList.MOD_DICTIONARY["Buzz Kill"]);
@@ -28,6 +28,7 @@
             mod.ShowAllChanges();
             clone.GetAllDamages();
             Console.WriteLine($"Clone Base dmg: {clone.GetBaseDamage()} Clone Quantum dmg: {clone.GetQuantumBaseDmg(enemy)}");
+            */
 
 
 

@@ -20,8 +20,28 @@ namespace WFCalculations
         public static readonly string[] ALLWEAPONSERIES = new string[]{
             "Incarnon","Kuva","Prime","Prisma","Tenet","Vandal","Wraith","Zaw"
         };
+        
 
-        // You can define constants of various data types here
+        public static readonly string ImpactDmg = "Impact Damage";
+        public static readonly string PunctureDmg = "Puncture Damage";
+        public static readonly string SlashDmg = "Slash Damage";
+
+        public static readonly string ToxinDmg = "Toxin Damage";
+        public static readonly string EletricityDmg = "Eletricity Damage";
+        public static readonly string ColdDmg = "Cold Damage";
+        public static readonly string HeatDmg = "Heat Damage";
+        public static readonly string CorrosiveDmg = "Corrosive Damage";
+        public static readonly string ViralDmg = "Viral Damage";
+        public static readonly string GasDmg = "Gas Damage";
+        public static readonly string MagneticDmg = "Magnetic Damage";
+        public static readonly string RadiationDmg = "Radiation Damage";
+        public static readonly string BlastDmg = "Blast Damage";
+
+        
+
+
+
+        
     }
 
 }

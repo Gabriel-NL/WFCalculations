@@ -5,6 +5,7 @@ namespace WFCalculations
         public string Name { get; set; } //Example: Covert Letality
         public string Type { get; set; } //Example: Melee
         public string SubType = "None"; //Example: Daggers
+        public string Exclusivity = "None"; //Example: Prime Fang
         public string Class { get; set; } //Example: Rare
         public string Polarity { get; set; } //Example: Madurai
         public int Cost { get; set; } //Example: 13
@@ -20,38 +21,27 @@ namespace WFCalculations
         public static readonly string BaseDmg = "Base Damage";
         public static readonly string BaseDmgOnFirstShot = "Base Damage On First Shot";
         public static readonly string BaseDmgPS = "Base Damage Per Status";
-        public static readonly string ImpactDmg = "Impact Damage";
-        public static readonly string PunctureDmg = "Puncture Damage";
-        public static readonly string SlashDmg = "Slash Damage";
+
         public static readonly string[] physicalMods = new string[]
         {
-            ImpactDmg,
-            PunctureDmg,
-            SlashDmg
+            Constants.ImpactDmg,
+            Constants.PunctureDmg,
+            Constants.SlashDmg
         };
-        public static readonly string ToxinDmg = "Toxin Damage";
-        public static readonly string EletricityDmg = "Eletricity Damage";
-        public static readonly string ColdDmg = "Cold Damage";
-        public static readonly string HeatDmg = "Heat Damage";
-        public static readonly string CorrosiveDmg = "Corrosive Damage";
-        public static readonly string ViralDmg = "Viral Damage";
-        public static readonly string GasDmg = "Gas Damage";
-        public static readonly string MagneticDmg = "Magnetic Damage";
-        public static readonly string RadiationDmg = "Radiation Damage";
-        public static readonly string BlastDmg = "Blast Damage";
-        public static readonly string HSMulti= "Headshot Multiplyer";
+
+        public static readonly string HSMulti = "Headshot Multiplyer";
         public static readonly string[] elementalMods = new string[]
         {
-            ModList.ToxinDmg,
-            ModList.EletricityDmg,
-            ModList.HeatDmg,
-            ModList.ColdDmg,
-            ModList.CorrosiveDmg,
-            ModList.GasDmg,
-            ModList.ViralDmg,
-            ModList.RadiationDmg,
-            ModList.MagneticDmg,
-            ModList.BlastDmg
+            Constants.ToxinDmg,
+            Constants.EletricityDmg,
+            Constants.HeatDmg,
+            Constants.ColdDmg,
+            Constants.CorrosiveDmg,
+            Constants.GasDmg,
+            Constants.ViralDmg,
+            Constants.RadiationDmg,
+            Constants.MagneticDmg,
+            Constants.BlastDmg
         };
 
         public static readonly string AttackSpeed = "Attack Speed";
@@ -63,7 +53,6 @@ namespace WFCalculations
         public static readonly string ReloadSpeed = "Reload Speed";
         public static readonly string MagazineCapacity = "Magazine Capacity";
         public static readonly string ComboDuration = "Combo Duration";
-        
 
         public static readonly Dictionary<string, ModData> MOD_DICTIONARY = new Dictionary<
             string,
@@ -79,7 +68,53 @@ namespace WFCalculations
                     mod_bonus = new Dictionary<string, float>() { { BaseDmgPS, 0.8f }, },
                 }
             },
-            
+            {
+                "Hellfire",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 11,
+                    mod_bonus = new Dictionary<string, float>() { { Constants.HeatDmg, 0.9f }, },
+                }
+            },
+            {
+                "Stormbringer",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 11,
+                    mod_bonus = new Dictionary<string, float>() { { Constants.EletricityDmg, 0.9f }, },
+                }
+            },
+            {
+                "Cryo Rounds",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 11,
+                    Restriction="Primed Cryo Rounds",
+                    mod_bonus = new Dictionary<string, float>() { { Constants.ColdDmg, 0.9f }, },
+                }
+            },
+            {
+                "Primed Cryo Rounds",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 11,
+                    Restriction="Cryo Rounds",
+                    mod_bonus = new Dictionary<string, float>() { { Constants.ColdDmg, 1.65f }, },
+                }
+            },
+            {
+                "Infected Clip",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 11,
+                    mod_bonus = new Dictionary<string, float>() { { Constants.ToxinDmg, 0.9f }, },
+                }
+            },
             { "", new ModData() },
         };
 

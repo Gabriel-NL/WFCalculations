@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
@@ -6,44 +7,66 @@ namespace WFCalculations
     public class ModInteraction
     {
         public WeaponDataModel weapon;
-        private EnemyData enemy;
         Dictionary<string, float> allChanges = new Dictionary<string, float>();
-        public List<ModData> modSlots = new List<ModData>();
+        Dictionary<string, ModData> modSlots;
+        public FactionWeakness enemy;
 
-        public ModInteraction(WeaponDataModel weapon)
+        public ModInteraction(WeaponDataModel weapon, FactionWeakness enemy)
         {
             this.weapon = weapon;
+            this.enemy = enemy;
         }
 
         public void IteratingOverAllMod()
         {
             int counter = 0;
-
+            modSlots= new Dictionary<string, ModData>();
             foreach (var mod in ModList.MOD_DICTIONARY)
             {
-                if (modSlots.Count() < 8)
-                {
 
-                }
-                else
+                bool has_slots = modSlots.Count < 8;
+                bool same_weapon_type = weapon.Type == mod.Value.Type;
+                bool same_weapon_subtype =
+                    weapon.SubType == mod.Value.SubType || mod.Value.SubType == "None";
+                bool weapon_exclusive =
+                    mod.Value.Exclusivity == weapon.Name || mod.Value.Exclusivity == "None";
+                bool is_restricted = mod.Value.Restriction != "None";
+                bool can_insert = true;
+                if (has_slots && same_weapon_type && same_weapon_subtype && weapon_exclusive)
                 {
+                    if (is_restricted)
+                    {
+                        foreach (var installed_mod in modSlots)
+                        {
+                            if (installed_mod.Value.Restriction == mod.Key)
+                            {
+                                //Console.WriteLine(installed_mod.Value.Restriction);
+                                //Console.WriteLine(mod.Key);
 
+                                can_insert = false;
+                            }
+                        }
+                    }
+                    if (can_insert)
+                    {
+                        modSlots.Add(mod.Key,mod.Value);
+                    }
                 }
             }
-
+            foreach (var data in modSlots)
+            {
+                Console.WriteLine($"{data.Key}");
+            }
         }
-
 
         public Dictionary<string, float> SumAllBonus()
         {
-
             foreach (var mod in modSlots)
             {
-                foreach (var bonus in mod.mod_bonus)
+                foreach (var bonus in mod.Value.mod_bonus)
                 {
                     if (allChanges.ContainsKey(bonus.Key))
                     {
-
                         allChanges[bonus.Key] += bonus.Value;
                     }
                     else
@@ -62,9 +85,9 @@ namespace WFCalculations
                 Console.WriteLine($"Key: {bonus.Key} Value: +{bonus.Value}");
             }
         }
+
         public float ApplyChanges()
         {
-
             SumAllBonus();
 
             if (allChanges.ContainsKey(ModList.BaseDmg))
@@ -85,7 +108,10 @@ namespace WFCalculations
                     float newDamage = alteration.Value * weapon.GetBaseDamage();
                     newElements.Add(alteration.Key, newDamage);
                 }
-                if (ModList.physicalMods.Contains(alteration.Key) && weapon.DamageTypes.ContainsKey(alteration.Key))
+                if (
+                    ModList.physicalMods.Contains(alteration.Key)
+                    && weapon.DamageTypes.ContainsKey(alteration.Key)
+                )
                 {
                     float newDamage = weapon.DamageTypes[alteration.Key] * (alteration.Value + 1);
                     newElements.Add(alteration.Key, newDamage);
@@ -95,7 +121,6 @@ namespace WFCalculations
             {
                 if (weapon.DamageTypes.ContainsKey(element.Key))
                 {
-
                     weapon.DamageTypes[element.Key] += element.Value;
                 }
                 else
@@ -104,15 +129,11 @@ namespace WFCalculations
                 }
             }
 
-
-
-
             return 0;
         }
 
-
         /*
-        Base_dmg 
+        Base_dmg
         *[1+pureDamageMods]
         *[
             1
@@ -143,13 +164,9 @@ namespace WFCalculations
         */
         public double ModifiedBaseDamage()
         {
-            float base_dmg = weapon.GetQuantumBaseDmg(enemy)
-            * 1
-            ;
+            float base_dmg = weapon.GetQuantumBaseDmg(DummyEnemyTest.grineer) * 1;
 
             return base_dmg;
         }
-
     }
-
 }
