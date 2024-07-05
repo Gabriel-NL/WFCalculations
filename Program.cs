@@ -21,8 +21,14 @@
             Console.WriteLine(149.6*2.65);
             Console.WriteLine("[Added mods:]");
             Console.WriteLine("");
-            modInteraction.IteratingOverAllMod();
-            modInteraction.ApplyChanges();
+            
+            foreach (var combination in modInteraction.GenerateCombinations())
+        {
+            Console.WriteLine(string.Join(" + ", combination));
+            Console.WriteLine("------------------------------");
+        }
+            //modInteraction.IteratingOverAllMod();
+            //modInteraction.ApplyChanges();
             
             /*
             WeaponDataModel clone = new WeaponDataModel(weaponTest);

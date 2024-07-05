@@ -13,45 +13,70 @@ namespace WFCalculations
             this.enemy = enemy;
         }
 
-        public void IteratingOverAllMod()
+   
+        public List<string[]> GenerateCombinations()
         {
-            int counter = 0;
-            modSlots = new Dictionary<string, ModData>();
-            foreach (var mod in ModList.MOD_DICTIONARY)
+            var result = new List<string[]>();
+            int n = ModList.MOD_DICTIONARY.Count;
+            for (int i = 1; i < (1 << n); i++)
             {
-                bool has_slots = modSlots.Count < 8;
-                bool same_weapon_type = weapon.Type == mod.Value.Type;
-                bool same_weapon_subtype =
-                    weapon.SubType == mod.Value.SubType || mod.Value.SubType == "None";
-                bool weapon_exclusive =
-                    mod.Value.Exclusivity == weapon.Name || mod.Value.Exclusivity == "None";
-                bool is_restricted = mod.Value.Restriction != "None";
-                bool can_insert = true;
-                if (has_slots && same_weapon_type && same_weapon_subtype && weapon_exclusive)
-                {
-                    if (is_restricted)
-                    {
-                        foreach (var installed_mod in modSlots)
-                        {
-                            if (installed_mod.Value.Restriction == mod.Key)
-                            {
-                                //Console.WriteLine(installed_mod.Value.Restriction);
-                                //Console.WriteLine(mod.Key);
+                var current_combination = new Dictionary<string, ModData>();
+                bool isValidCombination = true;
 
-                                can_insert = false;
+                for (int j = 0; j < n && isValidCombination; j++)
+                {
+                    if ((i & (1 << j)) != 0)
+                    {
+                        var mod = ModList.MOD_DICTIONARY.ElementAt(j);
+                        bool has_slots = current_combination.Count < 8;
+                        bool same_weapon_type = weapon.Type == mod.Value.Type;
+                        bool same_weapon_subtype =
+                            weapon.SubType == mod.Value.SubType || mod.Value.SubType == "None";
+                        bool weapon_exclusive =
+                            mod.Value.Exclusivity == weapon.Name || mod.Value.Exclusivity == "None";
+                        bool is_restricted = mod.Value.Restriction == "None";
+                        bool can_insert = true;
+
+                        if (
+                            has_slots
+                            && same_weapon_type
+                            && same_weapon_subtype
+                            && weapon_exclusive
+                        )
+                        {
+                            if (!is_restricted)
+                            {
+                                foreach (var installed_mod in current_combination)
+                                {
+                                    if (installed_mod.Value.Restriction == mod.Key)
+                                    {
+                                        can_insert = false;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (can_insert)
+                            {
+                                current_combination.Add(mod.Key, mod.Value);
+                            }
+                            else
+                            {
+                                isValidCombination = false;
                             }
                         }
-                    }
-                    if (can_insert)
-                    {
-                        modSlots.Add(mod.Key, mod.Value);
+                        else
+                        {
+                            isValidCombination = false;
+                        }
                     }
                 }
+                if (isValidCombination)
+                {
+                    result.Add(current_combination.Keys.ToArray());
+                }
             }
-            foreach (var data in modSlots)
-            {
-                Console.WriteLine($"{data.Key}");
-            }
+
+            return result;
         }
 
         public Dictionary<string, decimal> SumAllBonus()
@@ -93,8 +118,10 @@ namespace WFCalculations
 
                 foreach (var dmg_type in weapon.DamageTypes)
                 {
-                    Console.WriteLine($"[{dmg_type.Key}] {dmg_type.Value} x {DmgMultiplier} = {dmg_type.Value*DmgMultiplier} ");
-                    weapon.DamageTypes[dmg_type.Key] = dmg_type.Value*DmgMultiplier;
+                    Console.WriteLine(
+                        $"[{dmg_type.Key}] {dmg_type.Value} x {DmgMultiplier} = {dmg_type.Value * DmgMultiplier} "
+                    );
+                    weapon.DamageTypes[dmg_type.Key] = dmg_type.Value * DmgMultiplier;
                 }
             }
             Console.WriteLine("");
@@ -102,7 +129,10 @@ namespace WFCalculations
             Dictionary<string, decimal> newElements = new Dictionary<string, decimal>();
             foreach (var alteration in allChanges)
             {
-                if (Constants.baseElementalMods.Contains(alteration.Key) || Constants.complexElementalMods.Contains(alteration.Key))
+                if (
+                    Constants.baseElementalMods.Contains(alteration.Key)
+                    || Constants.complexElementalMods.Contains(alteration.Key)
+                )
                 {
                     decimal newDamage = alteration.Value * weapon.GetBaseDamage();
                     Console.WriteLine($"[New element] {alteration.Key}:{newDamage}");
@@ -134,7 +164,9 @@ namespace WFCalculations
 
             MixElements();
             Console.WriteLine("");
-            Console.WriteLine($"[Current damage + Base dmg multiplier + Elemental mods: {weapon.GetBaseDamage()}]");
+            Console.WriteLine(
+                $"[Current damage + Base dmg multiplier + Elemental mods: {weapon.GetBaseDamage()}]"
+            );
             foreach (var dmg in weapon.DamageTypes)
             {
                 Console.WriteLine($"{dmg.Key} = {dmg.Value}");
@@ -146,7 +178,7 @@ namespace WFCalculations
             Dictionary<string, decimal> new_combinations = new Dictionary<string, decimal>();
             foreach (var dmg_type in weapon.DamageTypes)
             {
-                if (Constants.baseElementalMods.Contains(dmg_type.Key) )
+                if (Constants.baseElementalMods.Contains(dmg_type.Key))
                 {
                     new_combinations.Add(dmg_type.Key, dmg_type.Value);
                     weapon.DamageTypes.Remove(dmg_type.Key);
@@ -160,7 +192,7 @@ namespace WFCalculations
                     var type1 = new_combinations.ElementAt(0);
                     var type2 = new_combinations.ElementAt(1);
                     // insert code here
-                    
+
                     foreach (var combination in Constants.Combinations)
                     {
                         if (Check_elements((type1.Key, type2.Key), combination.Value))
@@ -201,13 +233,7 @@ namespace WFCalculations
         ]
         *baseMultishot*(1+multishotMods)]
 
-        baseDmg
-        *1+PureDmgMods
-        *1+ElementalDmgMods
-        
-        +PunctureMods*punctureValue
-        +slashMods*slashValue
-        +impactMods*impactValue
+ 
 
         Base dmg, pure dmg, ... faction mods = modded dmg
 
@@ -220,21 +246,22 @@ namespace WFCalculations
                 || (analysed.Item2 == target.Item1 && analysed.Item1 == target.Item2);
             return result;
         }
+
         public decimal GetModdedBaseDamage()
-    {
-        decimal totalDamage = weapon.GetBaseDamage();
-        if (weapon.CritChance > 100)
         {
-            weapon.CritTier = (int)(weapon.CritChance / 100m);
-            weapon.CritChance %= 100m;
-            totalDamage = weapon.CritAttack(totalDamage, weapon.CritTier - 1);
-            return totalDamage;
+            decimal totalDamage = weapon.GetBaseDamage();
+            if (weapon.CritChance > 100)
+            {
+                weapon.CritTier = (int)(weapon.CritChance / 100m);
+                weapon.CritChance %= 100m;
+                totalDamage = weapon.CritAttack(totalDamage, weapon.CritTier - 1);
+                return totalDamage;
+            }
+            else
+            {
+                return totalDamage;
+            }
         }
-        else
-        {
-            return totalDamage;
-        }
-    }
 
         public double ModifiedBaseDamage()
         {
