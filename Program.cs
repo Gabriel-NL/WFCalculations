@@ -15,8 +15,14 @@
             
 
             WeaponDataModel weaponTest = WeaponList.RubicoPrime;
-            ModInteraction modInteraction = new ModInteraction(weaponTest,DummyEnemyTest.grineer);
+            FactionWeakness target= DummyEnemyTest.grineer;
+
+            ModInteraction modInteraction = new ModInteraction(weaponTest,target);
+            Console.WriteLine(149.6*2.65);
+            Console.WriteLine("[Added mods:]");
+            Console.WriteLine("");
             modInteraction.IteratingOverAllMod();
+            modInteraction.ApplyChanges();
             
             /*
             WeaponDataModel clone = new WeaponDataModel(weaponTest);

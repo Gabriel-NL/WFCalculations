@@ -2,16 +2,15 @@ namespace WFCalculations
 {
     public struct ModData
     {
-        public string Name { get; set; } //Example: Covert Letality
-        public string Type { get; set; } //Example: Melee
+        public required string Type { get; set; } //Example: Melee
         public string SubType = "None"; //Example: Daggers
         public string Exclusivity = "None"; //Example: Prime Fang
         public string Class { get; set; } //Example: Rare
         public string Polarity { get; set; } //Example: Madurai
-        public int Cost { get; set; } //Example: 13
+        public required int Cost { get; set; } //Example: 13
         public string Restriction = "None"; //Example: Primed Pressure point
         public string Condition = "None"; //Example: Wall Latch
-        public Dictionary<string, float> mod_bonus;
+        public required Dictionary<string, decimal> mod_bonus;
 
         public ModData() { }
     }
@@ -30,19 +29,6 @@ namespace WFCalculations
         };
 
         public static readonly string HSMulti = "Headshot Multiplyer";
-        public static readonly string[] elementalMods = new string[]
-        {
-            Constants.ToxinDmg,
-            Constants.EletricityDmg,
-            Constants.HeatDmg,
-            Constants.ColdDmg,
-            Constants.CorrosiveDmg,
-            Constants.GasDmg,
-            Constants.ViralDmg,
-            Constants.RadiationDmg,
-            Constants.MagneticDmg,
-            Constants.BlastDmg
-        };
 
         public static readonly string AttackSpeed = "Attack Speed";
         public static readonly string StatusChance = "Status Chance";
@@ -65,7 +51,7 @@ namespace WFCalculations
                 {
                     Type = "Melee",
                     Cost = 15,
-                    mod_bonus = new Dictionary<string, float>() { { BaseDmgPS, 0.8f }, },
+                    mod_bonus = new Dictionary<string, decimal>() { { BaseDmgPS, 0.8m }, },
                 }
             },
             {
@@ -74,36 +60,7 @@ namespace WFCalculations
                 {
                     Type = "Rifle",
                     Cost = 11,
-                    mod_bonus = new Dictionary<string, float>() { { Constants.HeatDmg, 0.9f }, },
-                }
-            },
-            {
-                "Stormbringer",
-                new ModData()
-                {
-                    Type = "Rifle",
-                    Cost = 11,
-                    mod_bonus = new Dictionary<string, float>() { { Constants.EletricityDmg, 0.9f }, },
-                }
-            },
-            {
-                "Cryo Rounds",
-                new ModData()
-                {
-                    Type = "Rifle",
-                    Cost = 11,
-                    Restriction="Primed Cryo Rounds",
-                    mod_bonus = new Dictionary<string, float>() { { Constants.ColdDmg, 0.9f }, },
-                }
-            },
-            {
-                "Primed Cryo Rounds",
-                new ModData()
-                {
-                    Type = "Rifle",
-                    Cost = 11,
-                    Restriction="Cryo Rounds",
-                    mod_bonus = new Dictionary<string, float>() { { Constants.ColdDmg, 1.65f }, },
+                    mod_bonus = new Dictionary<string, decimal>() { { Constants.HeatDmg, 0.9m }, },
                 }
             },
             {
@@ -112,10 +69,73 @@ namespace WFCalculations
                 {
                     Type = "Rifle",
                     Cost = 11,
-                    mod_bonus = new Dictionary<string, float>() { { Constants.ToxinDmg, 0.9f }, },
+                    mod_bonus = new Dictionary<string, decimal>() { { Constants.ToxinDmg, 0.9m }, },
                 }
             },
-            { "", new ModData() },
+            {
+                "Stormbringer",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 11,
+                    mod_bonus = new Dictionary<string, decimal>()
+                    {
+                        { Constants.EletricityDmg, 0.9m },
+                    },
+                }
+            },
+            {
+                "Cryo Rounds",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 11,
+                    Restriction = "Primed Cryo Rounds",
+                    mod_bonus = new Dictionary<string, decimal>() { { Constants.ColdDmg, 0.9m }, },
+                }
+            },
+            {
+                "Primed Cryo Rounds",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 11,
+                    Restriction = "Cryo Rounds",
+                    mod_bonus = new Dictionary<string, decimal>() { { Constants.ColdDmg, 1.65m }, },
+                }
+            },
+            {
+                "Serration",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 14,
+                    mod_bonus = new Dictionary<string, decimal>() { { BaseDmg, 1.65m }, },
+                }
+            },
+            {
+                "Sawtooth Clip",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 9,
+                    mod_bonus = new Dictionary<string, decimal>() { { Constants.SlashDmg, 0.9m }, },
+                }
+            },
+            {
+                "Radiated Reload",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 7,
+                    mod_bonus = new Dictionary<string, decimal>()
+                    {
+                        { Constants.RadiationDmg, 0.6m },
+                        { ModList.ReloadSpeed, 0.4m }
+                    },
+                }
+            },
+            //{ "", new ModData() },
         };
 
         // You can define constants of various data types here

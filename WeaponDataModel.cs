@@ -3,30 +3,39 @@ using WFCalculations;
 public class WeaponDataModel
 {
     //Display vars
-    public string Name, Category, Series, Type, SubType ,Trigger= "";
+    public string Name,
+        Category,
+        Series,
+        Type,
+        SubType,
+        Trigger = "";
     public Dictionary<string, string> Components = new Dictionary<string, string>();
     public string[] IsComponentFor = new string[3];
     public int MasteryRankRequirement { get; set; }
-    public float RivenDisposition { get; set; }
+    public decimal RivenDisposition { get; set; }
     public string ReleaseDate { get; set; }
-    public Dictionary<string, float> DamageTypes = new Dictionary<string, float>();
-    public float CritChance, CritMultiplier, CritTier, StatusChance = 0;
-    public float StatusDuration = 6;
+    public Dictionary<string, decimal> DamageTypes = new Dictionary<string, decimal>();
+    public decimal CritChance,
+        CritMultiplier,
+        CritTier,
+        StatusChance = 0;
+    public decimal StatusDuration = 6;
 
     //Melee
-    public float AtkSpeed, Reach = 1;
+    public decimal AtkSpeed,
+        Reach = 1;
+
     //Gun
-    public float ProjectileSpeed, FireRate, Multishot, Accuracy, AmmoMax, MagazineSize, ReloadSpeed = 1;
+    public decimal ProjectileSpeed,
+        FireRate,
+        Multishot,
+        Accuracy,
+        AmmoMax,
+        MagazineSize,
+        ReloadSpeed = 1;
 
+    public WeaponDataModel() { }
 
-
-
-
-
-    public WeaponDataModel()
-    {
-
-    }
     public WeaponDataModel(WeaponDataModel instance)
     {
         Name = instance.Name;
@@ -41,7 +50,7 @@ public class WeaponDataModel
         Components = new Dictionary<string, string>(instance.Components); // Create a copy of the dictionary
         IsComponentFor = instance.IsComponentFor.ToArray(); // Create a new array from the existing array
 
-        DamageTypes = new Dictionary<string, float>(instance.DamageTypes); // Create a copy of the dictionary
+        DamageTypes = new Dictionary<string, decimal>(instance.DamageTypes); // Create a copy of the dictionary
         AtkSpeed = instance.AtkSpeed;
         Reach = instance.Reach;
         CritChance = instance.CritChance;
@@ -49,24 +58,12 @@ public class WeaponDataModel
         CritTier = instance.CritTier;
         StatusChance = instance.StatusChance;
         StatusDuration = instance.StatusDuration;
-
     }
 
-    public float GetBaseDamage()
+    public decimal GetBaseDamage()
     {
-        float totalDamage = DamageTypes.Sum(x => x.Value);
-        if (CritChance > 100)
-        {
-            CritTier = (int)(CritChance / 100f);
-            CritChance %= 100f;
-            totalDamage = CritAttack(totalDamage, CritTier - 1);
-            return totalDamage;
-        }
-        else
-        {
-            return totalDamage;
-        }
-
+        decimal totalDamage = DamageTypes.Sum(x => x.Value);
+        return totalDamage;
     }
 
     public void GetAllDamages()
@@ -77,37 +74,35 @@ public class WeaponDataModel
         }
     }
 
-    public float GetQuantumBaseDmg(FactionWeakness enemy)
+    public decimal GetQuantumBaseDmg(FactionWeakness enemy)
     {
-        float Quantum = GetBaseDamage() / 16; //15.625
-        float total_true_dmg = 0;
-
+        decimal Quantum = GetBaseDamage() / 16; //15.625
+        decimal total_true_dmg = 0;
 
         // Perform the calculation, but if Quantum is 0, set the result to 0
-        foreach (KeyValuePair<string, float> kvp in DamageTypes)
+        foreach (KeyValuePair<string, decimal> damage_type in DamageTypes)
         {
             //int Quantum_dmg = (kvp.Value != 0) ? (int)Math.Round(kvp.Value / Quantum) : 0;
-            float Quantum_dmg = kvp.Value / Quantum;
-            float true_value = (int)Math.Round(Quantum_dmg) * Quantum;
+            decimal Quantum_dmg = damage_type.Value / Quantum;
+            decimal true_value = (int)Math.Round(Quantum_dmg) * Quantum;
 
-            if (enemy.DmgMultipliers.ContainsKey(kvp.Key))
+            if (enemy.DmgMultipliers.ContainsKey(damage_type.Key))
             {
-
-                float multiplier = enemy.DmgMultipliers[kvp.Key];
-                true_value *= 1.25f;
+                decimal multiplier = enemy.DmgMultipliers[damage_type.Key];
+                true_value *= multiplier;
             }
             total_true_dmg += true_value;
         }
 
         return (int)Math.Round(total_true_dmg);
-
     }
 
-
-    public float CritAttack(float base_dmg, float tier)
+    public decimal CritAttack(decimal base_dmg, decimal tier)
     {
-        float multiplier = CritMultiplier + ((CritMultiplier * tier) - 1 * tier);
-        float crit_dmg = base_dmg * multiplier;
+        decimal multiplier = CritMultiplier + ((CritMultiplier * tier) - 1 * tier);
+        decimal crit_dmg = base_dmg * multiplier;
         return crit_dmg;
     }
+
+    
 }
