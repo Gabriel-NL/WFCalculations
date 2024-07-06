@@ -2,8 +2,7 @@
 {
     using System;
     using System.Linq;
-    using System.Runtime.InteropServices;
-    using WFCalculations;
+
 
     public class Program // Add the class name "Program"
     {
@@ -38,52 +37,25 @@
                 if (current_dmg>highest_base_damage)
                 {
                     highest_base_damage=current_dmg;
-                    Console.WriteLine($"Current best dmg: {highest_base_damage} ");
                     bestMods=combination;
-                    best_weapon=cloneModder.weapon;
+                    best_weapon=weaponClone;
                     
-                    Console.WriteLine("");
                 }
                 cloneModder.modSlots.Clear();
 
             }
-            Console.WriteLine($"Best dmg: {highest_base_damage} ");
+            Console.WriteLine($"Weapon name: {best_weapon.Name}");
+            Console.WriteLine($"Target type: {target}");
+            Console.WriteLine($"Dmg per shot: {highest_base_damage} ");
+            Console.WriteLine($"Dmg on crit: {best_weapon.totalCritDMG}");
+            Console.WriteLine($"Damage values:");
             best_weapon.GetAllDamages();
+            Console.WriteLine($"Build used:");
             foreach (var mod in bestMods)
             {
                 Console.Write(mod.ToString()+", ");
             }
 
-
-            /*
-            foreach (var combination in modInteraction.GenerateCombinations())
-            {
-                Console.WriteLine(string.Join(" + ", combination));
-                Console.WriteLine("------------------------------");
-            }
-            Console.WriteLine("[Added mods:]");
-            Console.WriteLine("");
-            
-            //
-            //modInteraction.IteratingOverAllMod();
-            //modInteraction.ApplyChanges();
-
-            WeaponDataModel clone = new WeaponDataModel(weaponTest);
-            ModInteraction mod = new ModInteraction(clone);
-            mod.modSlots.Add(ModList.MOD_DICTIONARY["Buzz Kill"]);
-            mod.modSlots.Add(ModList.MOD_DICTIONARY["Spoiled Strike"]);
-            mod.modSlots.Add(ModList.MOD_DICTIONARY["Molten Impact"]);
-            mod.ApplyChanges();
-            mod.ShowAllChanges();
-            clone.GetAllDamages();
-            Console.WriteLine($"Clone Base dmg: {clone.GetBaseDamage()} Clone Quantum dmg: {clone.GetQuantumBaseDmg(enemy)}");
-            */
-
-
-
-            //ShowStats(BestZaw);
-            //StanceCalculations stanceData = new StanceCalculations(BestZaw.Type, BestZaw.BaseDamage());
-            //stanceData.CalculateStanceData(BestZaw.BaseDamage());
         }
 
         public static WeaponDataModel ShowBestZaw()

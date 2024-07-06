@@ -28,11 +28,12 @@ public class WeaponDataModel
     //Gun
     public float ProjectileSpeed,
         FireRate,
-        Multishot,
+        Multishot=1,
         Accuracy,
         AmmoMax,
         MagazineSize,
-        ReloadSpeed = 1;
+        ReloadSpeed = 1,
+        totalCritDMG;
 
     public WeaponDataModel() { }
 
@@ -80,7 +81,7 @@ public class WeaponDataModel
     {
         foreach (var dmg_type in DamageTypes)
         {
-            Console.WriteLine($"{dmg_type.Key} = {dmg_type.Value}");
+            Console.WriteLine($"{dmg_type.Key} = {Math.Round(dmg_type.Value)}");
         }
     }
 
@@ -118,6 +119,8 @@ public class WeaponDataModel
         {
             CritTier = (int)(CritChance / 100f);
             CritChance %= 100f;
+            totalCritDMG=(int)Math.Round(CritAttack(total_true_dmg, CritTier));
+
             total_true_dmg = CritAttack(total_true_dmg, CritTier - 1);
         }
         total_true_dmg = (int)Math.Round(total_true_dmg);

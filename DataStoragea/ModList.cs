@@ -146,6 +146,7 @@ namespace WFCalculations
                 {
                     Type = "Rifle",
                     Cost = 9,
+                    Restriction="Critical Delay",
                     mod_bonus = new Dictionary<string, float>() { { ModList.CritChance, 1.5f } },
                 }
             },
@@ -164,6 +165,7 @@ namespace WFCalculations
                 {
                     Type = "Rifle",
                     Cost = 9,
+                    Restriction="Point Strike",
                     mod_bonus = new Dictionary<string, float>()
                     {
                         { ModList.CritChance, 2.0f },
@@ -177,9 +179,23 @@ namespace WFCalculations
                 {
                     Type = "Rifle",
                     Cost = 9,
+                    Restriction= "Primed Bane of Corrupted",
                     mod_bonus = new Dictionary<string, float>()
                     {
                         { Constants.orokin, 1.3f }
+                    },
+                }
+            },
+            {
+                "Primed Bane of Corrupted",
+                new ModData()
+                {
+                    Type = "Rifle",
+                    Cost = 9,
+                    Restriction= "Bane of Corrupted",
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { Constants.orokin, 1.55f }
                     },
                 }
             },
