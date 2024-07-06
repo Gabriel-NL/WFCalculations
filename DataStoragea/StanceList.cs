@@ -8,12 +8,12 @@ namespace WFCalculations
     public struct Combo
     {
         public StanceHit[] AllHits;
-        public decimal ComboDuration;
+        public float ComboDuration;
     }
 
     public struct StanceHit
     {
-        public decimal multiplier = 1;
+        public float multiplier = 1;
         public bool procImpact,
             procPuncture,
             procBleeding,
@@ -27,12 +27,12 @@ namespace WFCalculations
             ranged,
             thrust,
             slam = false;
-        public decimal slamDmgMultiplier,
-            slamRadialDmgMultiplier = 1m;
+        public float slamDmgMultiplier,
+            slamRadialDmgMultiplier = 1f;
 
         public StanceHit() { }
 
-        public readonly decimal HitDmg(decimal base_dmg)
+        public readonly float HitDmg(float base_dmg)
         {
             return base_dmg * multiplier;
         }
@@ -68,9 +68,9 @@ namespace WFCalculations
                                 AllHits =
                                 [
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 3.0m },
+                                    new StanceHit() { multiplier = 3.0f },
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
                                 ],
                                 ComboDuration = 1,
                             }
@@ -82,9 +82,9 @@ namespace WFCalculations
                                 AllHits =
                                 [
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 3.0m },
+                                    new StanceHit() { multiplier = 3.0f },
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
                                 ],
                                 ComboDuration = 1,
                             }
@@ -96,9 +96,9 @@ namespace WFCalculations
                                 AllHits =
                                 [
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 3.0m },
+                                    new StanceHit() { multiplier = 3.0f },
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
                                 ],
                                 ComboDuration = 1,
                             }
@@ -110,9 +110,9 @@ namespace WFCalculations
                                 AllHits =
                                 [
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 3.0m },
+                                    new StanceHit() { multiplier = 3.0f },
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
                                 ],
                                 ComboDuration = 1,
                             }
@@ -132,20 +132,20 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 2.0m },
+                                    new StanceHit() { multiplier = 2.0f },
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 3.0m, procImpact = true },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 3.0m },
+                                    new StanceHit() { multiplier = 3.0f, procImpact = true },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 3.0f },
                                     new StanceHit(),
                                     new StanceHit()
                                     {
-                                        multiplier = 4.0m,
+                                        multiplier = 4.0f,
                                         procBleeding = true,
                                         procKnockdown = true
                                     }
                                 ],
-                                ComboDuration = 2.8m,
+                                ComboDuration = 2.8f,
                             }
                         },
                         {
@@ -159,7 +159,7 @@ namespace WFCalculations
                                     new StanceHit() { spin = true },
                                     new StanceHit() { spin = true }
                                 ],
-                                ComboDuration = 1.4m,
+                                ComboDuration = 1.4f,
                             }
                         },
                         {
@@ -168,13 +168,13 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
                                     new StanceHit() { spin = true },
                                     new StanceHit() { spin = true },
                                     new StanceHit() { spin = true },
-                                    new StanceHit() { multiplier = 3.0m, procLifted = true }
+                                    new StanceHit() { multiplier = 3.0f, procLifted = true }
                                 ],
-                                ComboDuration = 1.7m,
+                                ComboDuration = 1.7f,
                             }
                         },
                         {
@@ -183,20 +183,20 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 3.0m, procImpact = true },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 3.0m },
+                                    new StanceHit() { multiplier = 3.0f, procImpact = true },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 3.0f },
                                     new StanceHit(),
                                     new StanceHit()
                                     {
-                                        multiplier = 4.0m,
+                                        multiplier = 4.0f,
                                         procBleeding = true,
                                         procKnockdown = true
                                     },
                                 ],
-                                ComboDuration = 2.8m,
+                                ComboDuration = 2.8f,
                             }
                         }
                     },
@@ -214,18 +214,18 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 3.0m },
+                                    new StanceHit() { multiplier = 3.0f },
                                     new StanceHit() { procImpact = true },
                                     new StanceHit() { procBleeding = true },
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
-                                    new StanceHit() { multiplier = 4.0m, procKnockdown = true }
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
+                                    new StanceHit() { multiplier = 4.0f, procKnockdown = true }
                                 ],
-                                ComboDuration = 4.0m,
+                                ComboDuration = 4.0f,
                             }
                         },
                         {
@@ -235,12 +235,12 @@ namespace WFCalculations
                                 AllHits =
                                 [
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 2.0m },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 2.0f },
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 2.0m }
+                                    new StanceHit() { multiplier = 2.0f }
                                 ],
-                                ComboDuration = 1.8m,
+                                ComboDuration = 1.8f,
                             }
                         },
                         {
@@ -249,19 +249,19 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
-                                    new StanceHit() { multiplier = 3.0m },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
+                                    new StanceHit() { multiplier = 3.0f },
                                     new StanceHit()
                                     {
-                                        multiplier = 1.0m,
+                                        multiplier = 1.0f,
                                         slam = true,
                                         procKnockdown = true
                                     },
                                 ],
-                                ComboDuration = 2.7m,
+                                ComboDuration = 2.7f,
                             }
                         },
                         {
@@ -271,12 +271,12 @@ namespace WFCalculations
                                 AllHits =
                                 [
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 3.0m, procImpact = true },
-                                    new StanceHit() { multiplier = 2.0m, procBleeding = true },
-                                    new StanceHit() { multiplier = 4.0m, procRagdoll = true },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 3.0f, procImpact = true },
+                                    new StanceHit() { multiplier = 2.0f, procBleeding = true },
+                                    new StanceHit() { multiplier = 4.0f, procRagdoll = true },
                                 ],
-                                ComboDuration = 2.4m,
+                                ComboDuration = 2.4f,
                             }
                         },
                     },
@@ -294,13 +294,13 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 2.0m },
+                                    new StanceHit() { multiplier = 2.0f },
                                     new StanceHit() { spin = true, procBleeding = true },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 3.0m, procImpact = true },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 3.0f, procImpact = true },
                                 ],
-                                ComboDuration = 1.6m,
+                                ComboDuration = 1.6f,
                             }
                         },
                         {
@@ -310,12 +310,12 @@ namespace WFCalculations
                                 AllHits =
                                 [
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 2.0m, spin = true },
-                                    new StanceHit() { multiplier = 1.0m }
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 2.0f, spin = true },
+                                    new StanceHit() { multiplier = 1.0f }
                                 ],
-                                ComboDuration = 1.2m,
+                                ComboDuration = 1.2f,
                             }
                         },
                         {
@@ -325,12 +325,12 @@ namespace WFCalculations
                                 AllHits =
                                 [
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 2.0m, spin = true },
-                                    new StanceHit() { multiplier = 1.0m }
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 2.0f, spin = true },
+                                    new StanceHit() { multiplier = 1.0f }
                                 ],
-                                ComboDuration = 1.2m,
+                                ComboDuration = 1.2f,
                             }
                         },
                         {
@@ -339,13 +339,13 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 2.0m },
+                                    new StanceHit() { multiplier = 2.0f },
                                     new StanceHit() { spin = true, procBleeding = true },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 3.0m, procImpact = true },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 3.0f, procImpact = true },
                                 ],
-                                ComboDuration = 1.6m,
+                                ComboDuration = 1.6f,
                             }
                         }
                     },
@@ -435,11 +435,11 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 3.0m, procImpact = true },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 4.0m, procKnockdown = true },
+                                    new StanceHit() { multiplier = 3.0f, procImpact = true },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 4.0f, procKnockdown = true },
                                 ],
-                                ComboDuration = 2.4m,
+                                ComboDuration = 2.4f,
                             }
                         },
                         {
@@ -449,11 +449,11 @@ namespace WFCalculations
                                 AllHits =
                                 [
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 4.0m },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 4.0f },
                                 ],
-                                ComboDuration = 1.9m,
+                                ComboDuration = 1.9f,
                             }
                         },
                         {
@@ -462,12 +462,12 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 2.0m, procImpact = true },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 3.0m, procKnockdown = true },
+                                    new StanceHit() { multiplier = 2.0f, procImpact = true },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 3.0f, procKnockdown = true },
                                     new StanceHit() { slam = true, procImpact = true },
                                 ],
-                                ComboDuration = 2.0m,
+                                ComboDuration = 2.0f,
                             }
                         },
                         {
@@ -476,11 +476,11 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 3.0m, procImpact = true },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 4.0m, procKnockdown = true },
+                                    new StanceHit() { multiplier = 3.0f, procImpact = true },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 4.0f, procKnockdown = true },
                                 ],
-                                ComboDuration = 2.4m,
+                                ComboDuration = 2.4f,
                             }
                         },
                     },
@@ -502,12 +502,12 @@ namespace WFCalculations
                                     new StanceHit() { procLifted = true },
                                     new StanceHit(),
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 0.5m },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 4.0m, procKnockdown = true },
+                                    new StanceHit() { multiplier = 0.5f },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 4.0f, procKnockdown = true },
                                 ],
-                                ComboDuration = 1.9m,
+                                ComboDuration = 1.9f,
                             }
                         },
                         {
@@ -519,9 +519,9 @@ namespace WFCalculations
                                     new StanceHit(),
                                     new StanceHit(),
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 2.0m },
+                                    new StanceHit() { multiplier = 2.0f },
                                 ],
-                                ComboDuration = 2.0m,
+                                ComboDuration = 2.0f,
                             }
                         },
                         {
@@ -530,12 +530,12 @@ namespace WFCalculations
                             {
                                 AllHits =
                                 [
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 3.0m, procRagdoll = true },
-                                    new StanceHit() { multiplier = 3.0m, procRagdoll = true },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 3.0f, procRagdoll = true },
+                                    new StanceHit() { multiplier = 3.0f, procRagdoll = true },
                                 ],
-                                ComboDuration = 2.1m,
+                                ComboDuration = 2.1f,
                             }
                         },
                         {
@@ -548,12 +548,12 @@ namespace WFCalculations
                                     new StanceHit() { procLifted = true },
                                     new StanceHit(),
                                     new StanceHit(),
-                                    new StanceHit() { multiplier = 0.5m },
-                                    new StanceHit() { multiplier = 3.0m },
-                                    new StanceHit() { multiplier = 2.0m },
-                                    new StanceHit() { multiplier = 4.0m, procKnockdown = true },
+                                    new StanceHit() { multiplier = 0.5f },
+                                    new StanceHit() { multiplier = 3.0f },
+                                    new StanceHit() { multiplier = 2.0f },
+                                    new StanceHit() { multiplier = 4.0f, procKnockdown = true },
                                 ],
-                                ComboDuration = 1.9m,
+                                ComboDuration = 1.9f,
                             }
                         },
                     },

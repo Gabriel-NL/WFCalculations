@@ -3,21 +3,39 @@ namespace WFCalculations
     public class ModInteraction
     {
         public WeaponDataModel weapon;
-        Dictionary<string, decimal> allChanges = new Dictionary<string, decimal>();
-        Dictionary<string, ModData> modSlots;
-        public FactionWeakness enemy;
+        Dictionary<string, float> allChanges = new Dictionary<string, float>();
 
-        public ModInteraction(WeaponDataModel weapon, FactionWeakness enemy)
+        public Dictionary<string, ModData> modSlots = new Dictionary<string, ModData>();
+        public string enemy;
+        public static Dictionary<string, ModData> Current_dictionary =
+            new Dictionary<string, ModData>();
+
+        public ModInteraction(WeaponDataModel weapon)
         {
             this.weapon = weapon;
-            this.enemy = enemy;
         }
 
-   
         public List<string[]> GenerateCombinations()
         {
+            switch (weapon.Type)
+            {
+                case "Rifle":
+                    Current_dictionary = ModList.MOD_DICTIONARY_PRIMARY;
+                    break;
+                case "Shotgun":
+                    Current_dictionary = ModList.MOD_DICTIONARY_SHOTGUN;
+                    break;
+                case "Secondary":
+                    Current_dictionary = ModList.MOD_DICTIONARY_SECONDARY;
+                    break;
+                case "Melee":
+                    Current_dictionary = ModList.MOD_DICTIONARY_MELEE;
+                    break;
+                default:
+                    break;
+            }
             var result = new List<string[]>();
-            int n = ModList.MOD_DICTIONARY.Count;
+            int n = ModList.MOD_DICTIONARY_PRIMARY.Count;
             for (int i = 1; i < (1 << n); i++)
             {
                 var current_combination = new Dictionary<string, ModData>();
@@ -27,7 +45,8 @@ namespace WFCalculations
                 {
                     if ((i & (1 << j)) != 0)
                     {
-                        var mod = ModList.MOD_DICTIONARY.ElementAt(j);
+                        isValidCombination = true;
+                        var mod = ModList.MOD_DICTIONARY_PRIMARY.ElementAt(j);
                         bool has_slots = current_combination.Count < 8;
                         bool same_weapon_type = weapon.Type == mod.Value.Type;
                         bool same_weapon_subtype =
@@ -70,6 +89,7 @@ namespace WFCalculations
                         }
                     }
                 }
+
                 if (isValidCombination)
                 {
                     result.Add(current_combination.Keys.ToArray());
@@ -79,7 +99,7 @@ namespace WFCalculations
             return result;
         }
 
-        public Dictionary<string, decimal> SumAllBonus()
+        public Dictionary<string, float> SumAllBonus()
         {
             foreach (var mod in modSlots)
             {
@@ -108,25 +128,18 @@ namespace WFCalculations
 
         public void ApplyChanges()
         {
-            Console.WriteLine($"[Applying changes...]");
             SumAllBonus();
-            Console.WriteLine("");
-            Console.WriteLine($"[Current damage: {weapon.GetBaseDamage()}]");
             if (allChanges.ContainsKey(ModList.BaseDmg))
             {
-                decimal DmgMultiplier = 1 + allChanges[ModList.BaseDmg];
+                float DmgMultiplier = 1 + allChanges[ModList.BaseDmg];
 
                 foreach (var dmg_type in weapon.DamageTypes)
                 {
-                    Console.WriteLine(
-                        $"[{dmg_type.Key}] {dmg_type.Value} x {DmgMultiplier} = {dmg_type.Value * DmgMultiplier} "
-                    );
                     weapon.DamageTypes[dmg_type.Key] = dmg_type.Value * DmgMultiplier;
                 }
             }
-            Console.WriteLine("");
-            Console.WriteLine($"[Current damage + Base dmg multiplier: {weapon.GetBaseDamage()}]");
-            Dictionary<string, decimal> newElements = new Dictionary<string, decimal>();
+
+            Dictionary<string, float> newElements = new Dictionary<string, float>();
             foreach (var alteration in allChanges)
             {
                 if (
@@ -134,8 +147,7 @@ namespace WFCalculations
                     || Constants.complexElementalMods.Contains(alteration.Key)
                 )
                 {
-                    decimal newDamage = alteration.Value * weapon.GetBaseDamage();
-                    Console.WriteLine($"[New element] {alteration.Key}:{newDamage}");
+                    float newDamage = alteration.Value * weapon.GetBaseDamage();
                     newElements.Add(alteration.Key, newDamage);
                 }
                 if (
@@ -143,10 +155,7 @@ namespace WFCalculations
                     && weapon.DamageTypes.ContainsKey(alteration.Key)
                 )
                 {
-                    decimal newDamage = weapon.DamageTypes[alteration.Key] * (alteration.Value + 1);
-                    Console.WriteLine(
-                        $"{alteration.Key} = {weapon.DamageTypes[alteration.Key]} x {alteration.Value + 1}"
-                    );
+                    float newDamage = weapon.DamageTypes[alteration.Key] * (alteration.Value + 1);
                     newElements.Add(alteration.Key, newDamage);
                 }
             }
@@ -163,24 +172,45 @@ namespace WFCalculations
             }
 
             MixElements();
-            Console.WriteLine("");
-            Console.WriteLine(
-                $"[Current damage + Base dmg multiplier + Elemental mods: {weapon.GetBaseDamage()}]"
-            );
-            foreach (var dmg in weapon.DamageTypes)
+            if (allChanges.ContainsKey(ModList.CritChance))
             {
-                Console.WriteLine($"{dmg.Key} = {dmg.Value}");
+                float newCritChance = 1 + allChanges[ModList.CritChance];
+                weapon.CritChance *= newCritChance;
+            }
+            if (allChanges.ContainsKey(ModList.CritDmg))
+            {
+                float newCritDmg = 1 + allChanges[ModList.CritDmg];
+                weapon.CritMultiplier *= newCritDmg;
+            }
+
+            foreach (var name in Constants.ALL_ENEMY_NAMES)
+            {
+                if (allChanges.ContainsKey(name) && enemy == name)
+                {
+                    foreach (var dmg_type in weapon.DamageTypes)
+                    {
+                        weapon.DamageTypes[dmg_type.Key] = dmg_type.Value * allChanges[enemy];
+                    }
+                }
             }
         }
 
         public void MixElements()
         {
-            Dictionary<string, decimal> new_combinations = new Dictionary<string, decimal>();
+            Dictionary<string, float> new_combinations = new Dictionary<string, float>();
             foreach (var dmg_type in weapon.DamageTypes)
             {
                 if (Constants.baseElementalMods.Contains(dmg_type.Key))
                 {
-                    new_combinations.Add(dmg_type.Key, dmg_type.Value);
+                    if (new_combinations.ContainsKey(dmg_type.Key))
+                    {
+                        new_combinations[dmg_type.Key] += dmg_type.Value;
+                    }
+                    else
+                    {
+                        new_combinations.Add(dmg_type.Key, dmg_type.Value);
+                    }
+
                     weapon.DamageTypes.Remove(dmg_type.Key);
                 }
             }
@@ -197,7 +227,15 @@ namespace WFCalculations
                     {
                         if (Check_elements((type1.Key, type2.Key), combination.Value))
                         {
-                            weapon.DamageTypes.Add(combination.Key, type1.Value + type2.Value);
+                            if (weapon.DamageTypes.ContainsKey(combination.Key))
+                            {
+                                weapon.DamageTypes[combination.Key] += type1.Value + type2.Value;
+                            }
+                            else
+                            {
+                                weapon.DamageTypes.Add(combination.Key, type1.Value + type2.Value);
+                            }
+
                             new_combinations.Remove(type1.Key);
                             new_combinations.Remove(type2.Key);
                         }
@@ -212,6 +250,11 @@ namespace WFCalculations
                     new_combinations.Remove(new_combinations.ElementAt(0).Key);
                 }
             }
+        }
+
+        public void SetTarget(string enemy)
+        {
+            this.enemy = enemy;
         }
 
         /*
@@ -245,29 +288,6 @@ namespace WFCalculations
                 (analysed.Item1 == target.Item1 && analysed.Item2 == target.Item2)
                 || (analysed.Item2 == target.Item1 && analysed.Item1 == target.Item2);
             return result;
-        }
-
-        public decimal GetModdedBaseDamage()
-        {
-            decimal totalDamage = weapon.GetBaseDamage();
-            if (weapon.CritChance > 100)
-            {
-                weapon.CritTier = (int)(weapon.CritChance / 100m);
-                weapon.CritChance %= 100m;
-                totalDamage = weapon.CritAttack(totalDamage, weapon.CritTier - 1);
-                return totalDamage;
-            }
-            else
-            {
-                return totalDamage;
-            }
-        }
-
-        public double ModifiedBaseDamage()
-        {
-            decimal base_dmg = weapon.GetQuantumBaseDmg(enemy);
-
-            return (double)base_dmg;
         }
     }
 }

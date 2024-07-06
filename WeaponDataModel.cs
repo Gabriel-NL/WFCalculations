@@ -12,21 +12,21 @@ public class WeaponDataModel
     public Dictionary<string, string> Components = new Dictionary<string, string>();
     public string[] IsComponentFor = new string[3];
     public int MasteryRankRequirement { get; set; }
-    public decimal RivenDisposition { get; set; }
+    public float RivenDisposition { get; set; }
     public string ReleaseDate { get; set; }
-    public Dictionary<string, decimal> DamageTypes = new Dictionary<string, decimal>();
-    public decimal CritChance,
+    public Dictionary<string, float> DamageTypes = new Dictionary<string, float>();
+    public float CritChance,
         CritMultiplier,
         CritTier,
         StatusChance = 0;
-    public decimal StatusDuration = 6;
+    public float StatusDuration = 6;
 
     //Melee
-    public decimal AtkSpeed,
+    public float AtkSpeed,
         Reach = 1;
 
     //Gun
-    public decimal ProjectileSpeed,
+    public float ProjectileSpeed,
         FireRate,
         Multishot,
         Accuracy,
@@ -50,7 +50,12 @@ public class WeaponDataModel
         Components = new Dictionary<string, string>(instance.Components); // Create a copy of the dictionary
         IsComponentFor = instance.IsComponentFor.ToArray(); // Create a new array from the existing array
 
-        DamageTypes = new Dictionary<string, decimal>(instance.DamageTypes); // Create a copy of the dictionary
+        // Create a copy of the dictionary
+        foreach (var dmg in instance.DamageTypes)
+        {
+            DamageTypes.Add(dmg.Key, dmg.Value);
+        }
+
         AtkSpeed = instance.AtkSpeed;
         Reach = instance.Reach;
         CritChance = instance.CritChance;
@@ -60,10 +65,15 @@ public class WeaponDataModel
         StatusDuration = instance.StatusDuration;
     }
 
-    public decimal GetBaseDamage()
+    public float GetBaseDamage()
     {
-        decimal totalDamage = DamageTypes.Sum(x => x.Value);
-        return totalDamage;
+        float totalDamage = 0;
+        foreach (var dmg in DamageTypes)
+        {
+            totalDamage += dmg.Value;
+        }
+
+        return (float)Math.Round(totalDamage, 3);
     }
 
     public void GetAllDamages()
@@ -74,35 +84,50 @@ public class WeaponDataModel
         }
     }
 
-    public decimal GetQuantumBaseDmg(FactionWeakness enemy)
+    public void SetTargetEffectiveness(FactionWeakness factionWeakness)
     {
-        decimal Quantum = GetBaseDamage() / 16; //15.625
-        decimal total_true_dmg = 0;
+        foreach (KeyValuePair<string, float> damage_type in DamageTypes)
+        {
+            if (factionWeakness.DmgMultipliers.ContainsKey(damage_type.Key))
+            {
+                DamageTypes[damage_type.Key] *= factionWeakness.DmgMultipliers[damage_type.Key];
+            }
+        }
+    }
+
+    public float GetQuantumDmg()
+    {
+        float Quantum = GetBaseDamage() / 16; //15.625
+        float total_true_dmg = 0;
 
         // Perform the calculation, but if Quantum is 0, set the result to 0
-        foreach (KeyValuePair<string, decimal> damage_type in DamageTypes)
+        foreach (KeyValuePair<string, float> damage_type in DamageTypes)
         {
             //int Quantum_dmg = (kvp.Value != 0) ? (int)Math.Round(kvp.Value / Quantum) : 0;
-            decimal Quantum_dmg = damage_type.Value / Quantum;
-            decimal true_value = (int)Math.Round(Quantum_dmg) * Quantum;
+            float Quantum_dmg = damage_type.Value / Quantum;
+            float true_value = (int)Math.Round(Quantum_dmg) * Quantum;
 
-            if (enemy.DmgMultipliers.ContainsKey(damage_type.Key))
+            if (true)
             {
-                decimal multiplier = enemy.DmgMultipliers[damage_type.Key];
-                true_value *= multiplier;
+                
             }
             total_true_dmg += true_value;
         }
 
-        return (int)Math.Round(total_true_dmg);
+        if (CritChance > 100)
+        {
+            CritTier = (int)(CritChance / 100f);
+            CritChance %= 100f;
+            total_true_dmg = CritAttack(total_true_dmg, CritTier - 1);
+        }
+        total_true_dmg = (int)Math.Round(total_true_dmg);
+        return total_true_dmg;
     }
 
-    public decimal CritAttack(decimal base_dmg, decimal tier)
+    public float CritAttack(float base_dmg, float tier)
     {
-        decimal multiplier = CritMultiplier + ((CritMultiplier * tier) - 1 * tier);
-        decimal crit_dmg = base_dmg * multiplier;
+        float multiplier = CritMultiplier + ((CritMultiplier * tier) - 1 * tier);
+        float crit_dmg = base_dmg * multiplier;
         return crit_dmg;
     }
-
-    
 }

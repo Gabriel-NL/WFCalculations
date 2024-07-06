@@ -1,5 +1,4 @@
-        
-            {
+{
                 "Primed Pressure Point",
                 new ModData()
                 {
@@ -27,7 +26,10 @@
                 {
                     Type = "Melee",
                     Cost = 11,
-                    mod_bonus = new Dictionary<string, float>() { { PunctureDmg, 1.2f }, },
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { Constants.PunctureDmg, 1.2f },
+                    },
                 }
             },
             {
@@ -36,7 +38,7 @@
                 {
                     Type = "Melee",
                     Cost = 11,
-                    mod_bonus = new Dictionary<string, float>() { { SlashDmg, 1.2f }, },
+                    mod_bonus = new Dictionary<string, float>() { { Constants.SlashDmg, 1.2f }, },
                 }
             },
             {
@@ -47,7 +49,7 @@
                     Cost = 9,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { SlashDmg, 0.9f },
+                        { Constants.SlashDmg, 0.9f },
                         { StatusChance, 0.6f },
                     },
                 }
@@ -58,7 +60,7 @@
                 {
                     Type = "Melee",
                     Cost = 11,
-                    mod_bonus = new Dictionary<string, float>() { { ImpactDmg, 1.2f }, },
+                    mod_bonus = new Dictionary<string, float>() { { Constants.ImpactDmg, 1.2f }, },
                 }
             },
             {
@@ -67,7 +69,7 @@
                 {
                     Type = "Melee",
                     Cost = 12,
-                    mod_bonus = new Dictionary<string, float>() { { ImpactDmg, 1.65f }, },
+                    mod_bonus = new Dictionary<string, float>() { { Constants.ImpactDmg, 1.65f }, },
                 }
             },
             {
@@ -76,7 +78,7 @@
                 {
                     Type = "Melee",
                     Cost = 7,
-                    mod_bonus = new Dictionary<string, float>() { { SlashDmg, 0.9f }, },
+                    mod_bonus = new Dictionary<string, float>() { { Constants.SlashDmg, 0.9f }, },
                 }
             },
             {
@@ -87,7 +89,7 @@
                     Cost = 9,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { PunctureDmg, 0.9f },
+                        { Constants.PunctureDmg, 0.9f },
                         { StatusChance, 0.6f },
                     },
                 }
@@ -100,8 +102,8 @@
                     Cost = 9,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { SlashDmg, 0.6f },
-                        { PunctureDmg, 0.8f },
+                        { Constants.SlashDmg, 0.6f },
+                        { Constants.PunctureDmg, 0.8f },
                     },
                 }
             },
@@ -113,7 +115,7 @@
                     Cost = 9,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { ImpactDmg, 0.9f },
+                        { Constants.ImpactDmg, 0.9f },
                         { StatusChance, 0.6f },
                     },
                 }
@@ -124,7 +126,10 @@
                 {
                     Type = "Melee",
                     Cost = 7,
-                    mod_bonus = new Dictionary<string, float>() { { PunctureDmg, 0.9f }, },
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { Constants.PunctureDmg, 0.9f },
+                    },
                 }
             },
             {
@@ -133,7 +138,7 @@
                 {
                     Type = "Melee",
                     Cost = 16,
-                    mod_bonus = new Dictionary<string, float>() { { ToxinDmg, 1.65f }, },
+                    mod_bonus = new Dictionary<string, float>() { { Constants.ToxinDmg, 1.65f }, },
                 }
             },
             {
@@ -144,7 +149,7 @@
                     Cost = 9,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { EletricityDmg, 0.6f },
+                        { Constants.EletricityDmg, 0.6f },
                         { HeavyEfficiency, 0.4f },
                     },
                 }
@@ -155,7 +160,7 @@
                 {
                     Type = "Melee",
                     Cost = 11,
-                    mod_bonus = new Dictionary<string, float>() { { HeatDmg, 0.9f }, },
+                    mod_bonus = new Dictionary<string, float>() { { Constants.HeatDmg, 0.9f }, },
                 }
             },
             {
@@ -164,7 +169,7 @@
                 {
                     Type = "Melee",
                     Cost = 11,
-                    mod_bonus = new Dictionary<string, float>() { { ColdDmg, 0.9f }, },
+                    mod_bonus = new Dictionary<string, float>() { { Constants.ColdDmg, 0.9f }, },
                 }
             },
             {
@@ -176,19 +181,21 @@
                     Cost = 9,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { ToxinDmg, 1.0f },
-                        { HeatDmg, 0.5f },
+                        { Constants.ToxinDmg, 1.0f },
+                        { Constants.HeatDmg, 0.5f },
                     },
                 }
             },
-
-{
+            {
                 "Shocking Touch",
                 new ModData()
                 {
                     Type = "Melee",
                     Cost = 11,
-                    mod_bonus = new Dictionary<string, float>() { { EletricityDmg, 0.9f }, },
+                    mod_bonus = new Dictionary<string, float>()
+                    {
+                        { Constants.EletricityDmg, 0.9f },
+                    },
                 }
             },
             {
@@ -199,7 +206,7 @@
                     Cost = 7,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { ColdDmg, 0.6f },
+                        { Constants.ColdDmg, 0.6f },
                         { StatusChance, 0.6f },
                     },
                 }
@@ -212,7 +219,7 @@
                     Cost = 7,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { ToxinDmg, 0.6f },
+                        { Constants.ToxinDmg, 0.6f },
                         { StatusChance, 0.6f },
                     },
                 }
@@ -225,7 +232,7 @@
                     Cost = 7,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { HeatDmg, 0.6f },
+                        { Constants.HeatDmg, 0.6f },
                         { StatusChance, 0.6f },
                     },
                 }
@@ -238,7 +245,7 @@
                     Cost = 7,
                     mod_bonus = new Dictionary<string, float>()
                     {
-                        { EletricityDmg, 0.6f },
+                        { Constants.EletricityDmg, 0.6f },
                         { StatusChance, 0.6f },
                     },
                 }
@@ -279,11 +286,7 @@
                     Type = "Sniper",
                     Cost = 9,
                     Restriction = "Primed Chamber", // Assuming Restriction is a property of ModData
-                    mod_bonus = new Dictionary<string, float>()
-                    {
-                        { BaseDmgOnFirstShot, 0.4f },
-
-                    },
+                    mod_bonus = new Dictionary<string, float>() { { BaseDmgOnFirstShot, 0.4f }, },
                 }
             },
             {
@@ -293,11 +296,7 @@
                     Type = "Sniper",
                     Cost = 7,
                     Restriction = "Charged Chamber", // Assuming Restriction is a property of ModData
-                    mod_bonus = new Dictionary<string, float>()
-                    {
-                        { BaseDmgOnFirstShot, 0.4f },
-
-                    },
+                    mod_bonus = new Dictionary<string, float>() { { BaseDmgOnFirstShot, 0.4f }, },
                 }
             },
             {
@@ -322,10 +321,7 @@
                     Cost = 9,
                     Condition = "Aiming",
                     Restriction = "None", // Assuming Restriction is a property of ModData
-                    mod_bonus = new Dictionary<string, float>()
-                    {
-                        { ComboDuration, 12f },
-                    },
+                    mod_bonus = new Dictionary<string, float>() { { ComboDuration, 12f }, },
                 }
             },
             {
@@ -334,10 +330,7 @@
                 {
                     Type = "Sniper",
                     Cost = 11,
-                    
-                    mod_bonus = new Dictionary<string, float>()
-                    {
-                        { HSMulti, 0.6f },
-                    },
+
+                    mod_bonus = new Dictionary<string, float>() { { HSMulti, 0.6f }, },
                 }
             },

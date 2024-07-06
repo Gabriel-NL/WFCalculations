@@ -3,9 +3,6 @@ namespace WFCalculations
     public static class Constants
     {
         public static string SEPARATOR = string.Join("-", Enumerable.Repeat('-', 20));
-
-        public const string VOID = "Void";
-
         public static readonly string[] ALLZAWSTRIKES = new string[]
         {
             "Balla",
@@ -52,7 +49,6 @@ namespace WFCalculations
             "Ekwana Jai II",
             "Ekwana Ruhang II"
         };
-
         public static readonly string[] ALLWEAPONTYPES = new string[]
         {
             "Primary",
@@ -84,6 +80,7 @@ namespace WFCalculations
         public const string MagneticDmg = "Magnetic Damage";
         public const string RadiationDmg = "Radiation Damage";
         public const string BlastDmg = "Blast Damage";
+        public const string VoidDmg = "Void Damage";
 
         public static readonly string[] baseElementalMods = new string[]
         {
@@ -92,7 +89,8 @@ namespace WFCalculations
             Constants.HeatDmg,
             Constants.ColdDmg,
         };
-        public static readonly string[] complexElementalMods= new string[]{
+        public static readonly string[] complexElementalMods = new string[]
+        {
             Constants.CorrosiveDmg,
             Constants.GasDmg,
             Constants.ViralDmg,
@@ -112,5 +110,30 @@ namespace WFCalculations
             { Constants.RadiationDmg, (Constants.EletricityDmg, Constants.HeatDmg) },
             { Constants.BlastDmg, (Constants.HeatDmg, Constants.ColdDmg) }
         };
+
+        public const string grineer = "grineer";
+        public const string kuvaGrineer = "kuva grineer";
+        public const string corpus = "corpus";
+        public const string corpusAmalgam = "corpus amalgam";
+        public const string infested = "infested";
+        public const string infestedDeimos = "infested deimos";
+        public const string narmer = "narmer";
+        public const string orokin = "orokin";
+        public const string sentient = "sentient";
+        public const string murmur = "murmur";
+
+        public static readonly string[] ALL_ENEMY_NAMES =
+        [
+            grineer,
+            kuvaGrineer,
+            corpus,
+            corpusAmalgam,
+            infested,
+            infestedDeimos,
+            narmer,
+            orokin,
+            sentient,
+            murmur
+        ];
     }
 }
